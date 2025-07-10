@@ -32,6 +32,20 @@ const PropertyDetails = () => {
 
   // Wishlist handler
   const handleAddToWishlist = async () => {
+
+
+const result = await Swal.fire({
+    title: "Add to Wishlist?",
+    text: "Do you want to add this property to your wishlist?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, add it!",
+  });
+
+  if (!result.isConfirmed) return;
+
     const wishlistData = {
       propertyId: property._id,
       title: property.title,
@@ -45,11 +59,28 @@ const PropertyDetails = () => {
       userEmail: user?.email,
     };
 
+    // const res = await useAxios.post("/wishlist", wishlistData);
+
+  //   if (res.data.insertedId) {
+  //     Swal.fire("Added!", "Property added to wishlist", "success");
+  //   }
+  // };
+
+
+   try {
     const res = await useAxios.post("/wishlist", wishlistData);
+
     if (res.data.insertedId) {
-      Swal.fire("Added!", "Property added to wishlist", "success");
+      Swal.fire("Added!", "Property added to your wishlist.", "success");
     }
-  };
+  } catch (err) {
+    if (err.response?.status === 400) {
+      Swal.fire("Already Added", "This property is already in your wishlist.", "error");
+    } else {
+      Swal.fire("Error", "Something went wrong. Please try again.", "error");
+    }
+  }
+}
 
   // Review submit handler
   const handleReviewSubmit = async (e) => {
