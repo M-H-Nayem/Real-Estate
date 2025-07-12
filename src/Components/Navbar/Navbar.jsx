@@ -29,8 +29,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-primary text-primary-content shadow-md sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+    <nav className="bg-primary text-primary-content shadow-md sticky top-0 z-50 lg:px-[10%]" >
+      <div className=" mx-auto flex items-center justify-between px-4 py-3 md:py-4">
         {/* Logo + Website Name */}
         <NavLink
           to="/"
@@ -47,7 +47,7 @@ const Navbar = () => {
 
         {/* Hamburger Icon (mobile) */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="lg:hidden text-2xl focus:outline-none mx-[5%]  "
           onClick={toggleNav}
           aria-label="Toggle Menu"
         >
@@ -56,7 +56,7 @@ const Navbar = () => {
 
         {/* Links */}
         <ul
-          className={`flex-col md:flex-row md:flex md:items-center absolute md:static bg-primary md:bg-transparent w-full md:w-auto left-0 md:left-auto top-16 md:top-auto transition-all duration-300 ease-in ${
+          className={`flex-col lg:flex-row lg:flex lg:items-center absolute lg:static bg-primary lg:bg-transparent w-full md:w-auto left-0 lg:left-auto top-16 lg:top-auto transition-all duration-300 ease-in ${
             navOpen ? "flex" : "hidden"
           }`}
         >

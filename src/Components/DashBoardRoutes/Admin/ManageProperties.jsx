@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loading from "../../Loading/Loading";
 
 const ManageProperties = () => {
   const queryClient = useQueryClient();
@@ -42,7 +42,7 @@ const ManageProperties = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <><Loading></Loading></>;
 
   return (
     <div className="overflow-x-auto bg-white p-4 shadow rounded-xl">

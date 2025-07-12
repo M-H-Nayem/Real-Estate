@@ -17,6 +17,16 @@ import MySoldProperties from "../Components/DashBoardRoutes/Agent/MySoldProperti
 import ManageProperties from "../Components/DashBoardRoutes/Admin/ManageProperties";
 import PropertyDetails from "../Pages/PropertyDetals/PropertyDetails";
 import WishList from "../Components/DashBoardRoutes/User/WishList";
+import Welcome from "../Components/DashBoardRoutes/Welcome";
+import MyReviews from "../Components/DashBoardRoutes/User/MyReviews";
+import MakeOffer from "../Components/DashBoardRoutes/User/MakeOffer";
+import PropertyBought from "../Components/DashBoardRoutes/User/PropertyBought";
+import RequestedProperties from "../Components/DashBoardRoutes/Agent/RequestedProperties";
+import ManageUsers from "../Components/DashBoardRoutes/Admin/ManageUsers";
+import PrivateAdminRoute from "./PrivateAdminRoute";
+import Forbidden from "../Components/Forbidden";
+import PrivateAgentRoute from "./PrivateAgentRoute";
+import PrivateUserRoute from "./PrivateUserRoute";
 
 export let router = createBrowserRouter([
   {
@@ -33,7 +43,11 @@ export let router = createBrowserRouter([
       },
       {
         path: "property/:id",
-        element: <PrivateRoute><PropertyDetails></PropertyDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <PropertyDetails></PropertyDetails>
+          </PrivateRoute>
+        ),
       },
 
       {
@@ -53,51 +67,136 @@ export let router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
-          { index: true, element: <>hello</> },
+          { index: true, element: <Welcome></Welcome> },
           // user routes
           {
             path: "profile",
-            element:<UserProfile></UserProfile>,
+            element: (
+              <PrivateUserRoute>
+                <UserProfile></UserProfile>
+              </PrivateUserRoute>
+            ),
           },
           {
             path: "wishlist",
-            element: <WishList></WishList>,
+            element: (
+              <PrivateUserRoute>
+                <WishList></WishList>
+              </PrivateUserRoute>
+            ),
+          },
+          {
+            path: "make-offer/:id",
+            element: (
+              <PrivateUserRoute>
+                <MakeOffer></MakeOffer>
+              </PrivateUserRoute>
+            ),
+          },
+          {
+            path: "bought",
+            element: (
+              <PrivateUserRoute>
+                {" "}
+                <PropertyBought></PropertyBought>
+              </PrivateUserRoute>
+            ),
+          },
+          {
+            path: "reviews",
+            element: (
+              <PrivateUserRoute>
+                <MyReviews></MyReviews>
+              </PrivateUserRoute>
+            ),
           },
 
           // agent routes
           {
             path: "agent-profile",
-            element:<AgentProfile></AgentProfile>,
+            element: (
+              <PrivateAgentRoute>
+                <AgentProfile></AgentProfile>
+              </PrivateAgentRoute>
+            ),
           },
           {
             path: "add-property",
-            element:<AddProperty></AddProperty>,
+            element: (
+              <PrivateAgentRoute>
+                <AgentProfile></AgentProfile>
+              </PrivateAgentRoute>
+            ),
+
+            // element: <AddProperty></AddProperty>,
           },
           {
             path: "my-properties",
-            element:<MyAddedProperties></MyAddedProperties>,
+            element: (
+              <PrivateAgentRoute>
+                <MyAddedProperties></MyAddedProperties>
+              </PrivateAgentRoute>
+            ),
+
+            // element: <MyAddedProperties></MyAddedProperties>,
           },
           {
             path: "update-property/:id",
-            element:<UpdateProperty></UpdateProperty>,
+            element: (
+              <PrivateAgentRoute>
+                <UpdateProperty></UpdateProperty>
+              </PrivateAgentRoute>
+            ),
+
+            // element: ,
           },
+          {
+            path: "offers",
+            element: (
+              <PrivateAgentRoute>
+                <RequestedProperties></RequestedProperties>
+              </PrivateAgentRoute>
+            ),
+          },
+
           // {
           //   path: "sold-properties",
           //   element:<MySoldProperties></MySoldProperties>,
           // },
 
-
-
           // admin routes
           {
             path: "admin-profile",
-            element:<AdminProfile></AdminProfile>,
+            element: (
+              <PrivateAdminRoute>
+                <AdminProfile></AdminProfile>
+              </PrivateAdminRoute>
+            ),
           },
           {
             path: "manage-properties",
-            element:<ManageProperties></ManageProperties>,
+            element: (
+              <PrivateAdminRoute>
+                <ManageProperties></ManageProperties>
+              </PrivateAdminRoute>
+            ),
           },
-          
+          {
+            path: "manage-users",
+            element: (
+              <PrivateAdminRoute>
+                <ManageUsers></ManageUsers>
+              </PrivateAdminRoute>
+            ),
+          },
+          {
+            path: "manage-reviews",
+            element: (
+              <PrivateAdminRoute>
+                <ManageUsers></ManageUsers>
+              </PrivateAdminRoute>
+            ),
+          },
         ],
       },
     ],
@@ -105,5 +204,9 @@ export let router = createBrowserRouter([
   {
     path: "*",
     element: <ErrorPage></ErrorPage>,
+  },
+  {
+    path: "/forbiden",
+    element: <Forbidden></Forbidden>,
   },
 ]);

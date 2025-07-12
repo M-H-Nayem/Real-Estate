@@ -35,7 +35,7 @@ let {user} = useAuth()
     <div className="min-h-screen flex flex-col lg:flex-row ">
       {/* Sidebar */}
       <aside
-        className={` w-full lg:w-64 min-h-screen p-4 bg-white fixed overflow-y-auto transition-transform duration-300 ${
+        className={` w-full lg:w-64 min-h-screen p-4 z-50 bg-white fixed overflow-y-auto transition-transform duration-300 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
@@ -50,13 +50,13 @@ let {user} = useAuth()
         {/* Sidebar Links */}
         <ul className="space-y-3">
       {/* 🔵 User Routes */}
-      <li>
+      <li onClick={()=>{(setIsSidebarOpen(false))}}>
         <NavLink to="/dashboard/profile" className={getLinkClass}>
           <FaUserCircle /> My Profile
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard/wishlist" className={getLinkClass}>
+      <li onClick={()=>{(setIsSidebarOpen(false))}}>
+        <NavLink  to="/dashboard/wishlist" className={getLinkClass}>
           <FaHeart /> Wishlist
         </NavLink>
       </li>
@@ -125,7 +125,7 @@ let {user} = useAuth()
       {/* Content */}
       <main className="border-l flex-1 ml-0 lg:ml-64 p-4 bg-gray-100 min-h-screen">
         {/* Mobile Navbar */}
-        <div className="lg:hidden flex justify-between items-center mb-4">
+        <div className="lg:hidden flex justify-between items-center mb-4 mx-[5%]">
           <h2 className="text-xl font-bold">Dashboard</h2>
           <button onClick={toggleSidebar}>
             <FaBars className="text-2xl" />

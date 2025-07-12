@@ -4,8 +4,10 @@ import { FiUploadCloud, FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Register = () => {
+  let axiosSecure = useAxiosSecure()
   let { createUser, user, setUser, updateUser, googleLogin } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
@@ -110,7 +112,26 @@ const Register = () => {
       //   here we will implement registration authentication
 
       createUser(formData.email, formData.password)
-        .then(() => {
+        .then(async() => {
+
+ const userData = {
+    name: formData.name,
+    email: formData.email,
+    role: "user",
+    image: imageUrl,
+    created_at:new Date().toISOString()
+  };
+
+  try {
+    const res = await axiosSecure.post("/users", userData);
+    if (res.data.insertedId) {
+      console.log("User saved to database");
+    }
+  } catch (err) {
+    console.error("Error saving user to DB", err);
+  }
+
+
           updateUser({ displayName: formData.name, photoURL: imageUrl })
             .then(() => {
               setUser({
@@ -124,10 +145,19 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1500,
               });
+
+
+              // from here i post my user info in db
+
+            
+ 
+
+
+
               navigate(`${location.state ? location.state : "/"}`);
             })
             .catch((error) => {
-              //  setUser(user);
+               setUser(user);
             });
         })
         .catch(() => {});

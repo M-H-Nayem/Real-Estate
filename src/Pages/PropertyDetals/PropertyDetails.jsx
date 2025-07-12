@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Loading from "../../Components/Loading/Loading";
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -107,7 +108,7 @@ const result = await Swal.fire({
     refetch()
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>
 
   return (
     <div className="min-h-screen bg-gray-200 black py-20">
@@ -116,7 +117,7 @@ const result = await Swal.fire({
         <img  src={property.image} alt={property.title} className="rounded-xl " />
 
         <div className="">
-          <h2 className="text-4xl font-bold mt-4">{property.title}</h2>
+          <h2 className="text-4xl font-bold mt-5">{property.title}</h2>
           <p className="text-gray-600 mt-2">{property.description}</p>
           <p className="mt-4 text-xl">
             <strong>Location:</strong> {property.location}
@@ -151,7 +152,7 @@ const result = await Swal.fire({
             {reviews?.map((r) => (
               <div
                 key={r._id}
-                className="border p-4 rounded-lg bg-white shadow-sm"
+                className=" p-4 rounded-lg bg-gray-200 shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <img
@@ -161,7 +162,7 @@ const result = await Swal.fire({
                   />
                   <div>
                     <p className="font-semibold">{r.reviewerName}</p>
-                    <p className="text-xs text-gray-500">{r.propertyTitle}</p>
+                    <p className="text-xs text-gray-500">{r.reviewerEmail}</p>
                   </div>
                 </div>
                 <p className="text-gray-700">{r.review}</p>
