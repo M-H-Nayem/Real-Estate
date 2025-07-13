@@ -1,59 +1,65 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MySoldProperties = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
-  // ✅ Fetch sold properties for this agent
+  // Fetch all sold properties (status: 'bought') for this agent
   const { data: soldProperties = [], isLoading } = useQuery({
-    queryKey: ["soldProperties", user?.email],
-    enabled: !loading && !!user?.email,
+    queryKey: ["mySoldProperties", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`/sold-properties?agentEmail=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/offers/sold?agentEmail=${user?.email}`
+      );
       return res.data;
     },
   });
 
-  if (isLoading) {
-    return <div className="text-center py-20 font-semibold text-xl">Loading...</div>;
-  }
+  if (isLoading) return <div className="text-center mt-10">Loading...</div>;
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-6">My Sold Properties</h2>
-
-      {soldProperties.length === 0 ? (
-        <p className="text-gray-600">You have no sold properties yet.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
-            <thead className="bg-blue-600 text-white">
-              <tr>
-                <th>#</th>
-                <th>Property Title</th>
-                <th>Location</th>
-                <th>Buyer Name</th>
-                <th>Buyer Email</th>
-                <th>Sold Price</th>
+      <h2 className="text-2xl font-bold mb-4">My Sold Properties</h2>
+      <div className="overflow-x-auto">
+        <table className="table w-full bg-white shadow-md">
+          <thead className="bg-gray-200 text-gray-800">
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Location</th>
+              <th>Buyer Name</th>
+              <th>Buyer Email</th>
+              <th>Sold Price</th>
+              <th>Transaction ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {soldProperties.map((property) => (
+              <tr key={property._id}>
+                <td>
+                  <img
+                    src={property?.propertyImage}
+                    alt={property?.title}
+                    className="w-20 h-14 object-cover rounded"
+                  />
+                </td>
+                <td>{property.title}</td>
+                <td>{property.location}</td>
+                <td>{property.buyerName}</td>
+                <td>{property.buyerEmail}</td>
+                <td>${property.offerAmount}</td>
+                <td>{property.transactionId}</td>
               </tr>
-            </thead>
-            <tbody>
-              {soldProperties?.map((property, index) => (
-                <tr key={property._id}>
-                  <td>{index + 1}</td>
-                  <td>{property.title}</td>
-                  <td>{property.location}</td>
-                  <td>{property.buyerName}</td>
-                  <td>{property.buyerEmail}</td>
-                  <td>${property.offeredAmount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            ))}
+          </tbody>
+        </table>
+        {soldProperties.length === 0 && (
+          <p className="text-center text-gray-500 mt-5">No sold properties yet.</p>
+        )}
+      </div>
     </div>
   );
 };

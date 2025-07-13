@@ -3,11 +3,15 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const AddProperty = () => {
+  let {role}= useUserRole()
   const { user } = useAuth();
   let useAxios = useAxiosSecure()
   const [selectedImage, setSelectedImage] = useState(null);
+  let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,6 +65,7 @@ const AddProperty = () => {
       if (res.data.insertedId) {
         Swal.fire("Success!", "Property added successfully!", "success");
         form.reset();
+        navigate('/dashboard/my-properties')
         setSelectedImage(null);
       }
     } catch (error) {
@@ -74,6 +79,14 @@ const AddProperty = () => {
     if (file) setSelectedImage(URL.createObjectURL(file));
     else setSelectedImage(null);
   };
+
+  if (role === "fraud") {
+  return (
+    <div className="text-center mt-10 text-red-600 font-bold text-xl">
+      ❌ You are marked as a fraud. You cannot add new properties.
+    </div>
+  );
+}
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded-xl">
@@ -152,7 +165,7 @@ const AddProperty = () => {
           required
         />
 
-        <button type="submit" className="btn btn-primary w-full text-white">
+        <button disabled={role === "fraud"} type="submit" className="btn btn-primary w-full text-white">
           Add Property
         </button>
       </form>

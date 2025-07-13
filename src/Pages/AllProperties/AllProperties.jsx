@@ -21,8 +21,10 @@ const AllProperties = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
+      <title>All-Properties</title>
         <div className="max-w-7xl mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold mb-6 text-center">All Verified Properties</h2>
+      <title>All-Properties</title>
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {properties.map((property) => (
           <div

@@ -26,7 +26,9 @@ const RequestedProperties = () => {
       if (res.data.modifiedCount > 0) {
         Swal.fire(
           "Success!",
-          `Offer has been ${decision === "accepted" ? "accepted" : "rejected"}.`,
+          `Offer has been ${
+            decision === "accepted" ? "accepted" : "rejected"
+          }.`,
           "success"
         );
         refetch();
@@ -38,7 +40,9 @@ const RequestedProperties = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Requested / Offered Properties</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        Requested / Offered Properties
+      </h2>
       <div className="overflow-x-auto">
         <table className="table w-full shadow-md bg-white">
           <thead className="bg-gray-200 text-gray-700">
@@ -86,7 +90,11 @@ const RequestedProperties = () => {
                     <>
                       <button
                         onClick={() =>
-                          handleDecision(offer._id, offer.propertyId, "accepted")
+                          handleDecision(
+                            offer._id,
+                            offer.propertyId,
+                            "accepted"
+                          )
                         }
                         className="btn btn-sm btn-success"
                       >
@@ -94,7 +102,11 @@ const RequestedProperties = () => {
                       </button>
                       <button
                         onClick={() =>
-                          handleDecision(offer._id, offer.propertyId, "rejected")
+                          handleDecision(
+                            offer._id,
+                            offer.propertyId,
+                            "rejected"
+                          )
                         }
                         className="btn btn-sm btn-error"
                       >
@@ -102,7 +114,13 @@ const RequestedProperties = () => {
                       </button>
                     </>
                   ) : (
-                    <span className="text-sm text-gray-500 capitalize">
+                    <span
+                      className={`text-sm capitalize ${
+                        offer.status === "accepted" && "btn btn-sm btn-success"
+                      }  ${
+                        offer.status === "rejected" && "btn btn-sm btn-error"
+                      }`}
+                    >
                       {offer.status}
                     </span>
                   )}

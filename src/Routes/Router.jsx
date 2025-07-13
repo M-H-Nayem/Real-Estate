@@ -27,6 +27,8 @@ import PrivateAdminRoute from "./PrivateAdminRoute";
 import Forbidden from "../Components/Forbidden";
 import PrivateAgentRoute from "./PrivateAgentRoute";
 import PrivateUserRoute from "./PrivateUserRoute";
+import ManageReviews from "../Components/DashBoardRoutes/Admin/ManageReviews";
+import Payment from "../Components/DashBoardRoutes/User/Payment";
 
 export let router = createBrowserRouter([
   {
@@ -94,6 +96,14 @@ export let router = createBrowserRouter([
             ),
           },
           {
+            path: "payment/:id",
+            element: (
+              <PrivateUserRoute>
+                <Payment></Payment>
+              </PrivateUserRoute>
+            ),
+          },
+          {
             path: "bought",
             element: (
               <PrivateUserRoute>
@@ -120,15 +130,16 @@ export let router = createBrowserRouter([
               </PrivateAgentRoute>
             ),
           },
+         
           {
             path: "add-property",
             element: (
               <PrivateAgentRoute>
-                <AgentProfile></AgentProfile>
+                <AddProperty></AddProperty>
               </PrivateAgentRoute>
             ),
 
-            // element: <AddProperty></AddProperty>,
+            // element: ,
           },
           {
             path: "my-properties",
@@ -137,8 +148,14 @@ export let router = createBrowserRouter([
                 <MyAddedProperties></MyAddedProperties>
               </PrivateAgentRoute>
             ),
-
-            // element: <MyAddedProperties></MyAddedProperties>,
+          },
+           {
+            path: "sold-properties",
+            element: (
+              <PrivateAgentRoute>
+                <MySoldProperties></MySoldProperties>
+              </PrivateAgentRoute>
+            ),
           },
           {
             path: "update-property/:id",
@@ -193,7 +210,7 @@ export let router = createBrowserRouter([
             path: "manage-reviews",
             element: (
               <PrivateAdminRoute>
-                <ManageUsers></ManageUsers>
+                <ManageReviews></ManageReviews>
               </PrivateAdminRoute>
             ),
           },

@@ -95,7 +95,7 @@ const Wishlist = () => {
                   </span>
                 </td>
                 <td>${property.minPrice} - ${property.maxPrice}</td>
-                <td className="items-center">
+                <td className="items-center ">
                   <Link
                     to={`/dashboard/make-offer/${property.propertyId}`}
                     className="btn btn-s btn-primary "
@@ -104,7 +104,7 @@ const Wishlist = () => {
                   </Link>
                   <button
                     onClick={() => handleRemove(property._id)}
-                    className="btn btn-s btn-error lg:ml-3 mt-2 lg:mt-0"
+                    className="btn btn-s btn-error lg:mt-0 mt-2 lg:ml-3  "
                   >
                     <FaTrash className="mr-1" /> Remove
                   </button>

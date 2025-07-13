@@ -118,9 +118,9 @@ const handleDeleteOffer = async (id) => {
                     </Link>
                   )}
                   {offer.status === "bought" && (
-                    <span className="text-sm text-green-600 font-medium">Paid</span>
+                    <span className="text-sm text-green-700 font-medium bg-green-300 py-3 px-5 rounded-xl">Paid</span>
                   )}
-                  <button onClick={()=>handleDeleteOffer(offer._id)} className="btn px-2 py-1 rounded font-semibold  bg-red-200 text-red-700">Delete</button>
+                  {!offer.transactionId && <button onClick={()=>handleDeleteOffer(offer._id)} className="btn px-2 py-1 rounded font-semibold  bg-red-200 text-red-700">Delete</button>}
                 </td>
               </tr>
             ))}

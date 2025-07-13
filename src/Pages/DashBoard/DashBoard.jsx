@@ -18,10 +18,11 @@ import {
   FaStar,
 } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import useUserRole from "../../Hooks/useUserRole";
 
 const DashBoard = () => {
-
-let {user} = useAuth()
+  let { user } = useAuth();
+  let { role } = useUserRole();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -31,11 +32,159 @@ let {user} = useAuth()
       ? "btn btn-ghost w-full justify-start gap-2 bg-blue-600 font-semibold text-white"
       : "btn btn-ghost w-full justify-start gap-2";
 
+  let routes = <></>;
+
+  {
+    /* 🔵 User Routes */
+  }
+  if (role === "user") {
+    routes = (
+      <>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/profile" className={getLinkClass}>
+            <FaUserCircle /> My Profile
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/wishlist" className={getLinkClass}>
+            <FaHeart /> Wishlist
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/bought" className={getLinkClass}>
+            <FaShoppingBag /> Property Bought
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/reviews" className={getLinkClass}>
+            <FaStar /> My Reviews
+          </NavLink>
+        </li>
+      </>
+    );
+  }
+  {
+    /* 🟢 Agent Routes */
+  }
+  if (role === "agent" || role === "fraud" ) {
+    routes = (
+      <>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/agent-profile" className={getLinkClass}>
+            <FaUserTie /> Agent Profile
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/add-property" className={getLinkClass}>
+            <FaPlusCircle /> Add Property
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/my-properties" className={getLinkClass}>
+            <FaClipboardList /> My Added Properties
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/sold-properties" className={getLinkClass}>
+            <FaCheckCircle /> My Sold Properties
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/offers" className={getLinkClass}>
+            <FaHandshake /> Requested Properties
+          </NavLink>
+        </li>
+      </>
+    );
+  }
+  {
+    /* 🔴 Admin Routes */
+  }
+  if (role === "admin") {
+    routes = (
+      <>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/admin-profile" className={getLinkClass}>
+            <FaUserShield /> Admin Profile
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/manage-properties" className={getLinkClass}>
+            <FaTasks /> Manage Properties
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/manage-users" className={getLinkClass}>
+            <FaUsersCog /> Manage Users
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/manage-reviews" className={getLinkClass}>
+            <FaComments /> Manage Reviews
+          </NavLink>
+        </li>
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col lg:flex-row ">
       {/* Sidebar */}
+      <title>Dashboard</title>
       <aside
-        className={` w-full lg:w-64 min-h-screen p-4 z-50 bg-white fixed overflow-y-auto transition-transform duration-300 ${
+        className={` w-full lg:w-64 p-4 z-50 bg-white fixed overflow-y-auto transition-transform duration-300 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
@@ -48,78 +197,7 @@ let {user} = useAuth()
         </div>
 
         {/* Sidebar Links */}
-        <ul className="space-y-3">
-      {/* 🔵 User Routes */}
-      <li onClick={()=>{(setIsSidebarOpen(false))}}>
-        <NavLink to="/dashboard/profile" className={getLinkClass}>
-          <FaUserCircle /> My Profile
-        </NavLink>
-      </li>
-      <li onClick={()=>{(setIsSidebarOpen(false))}}>
-        <NavLink  to="/dashboard/wishlist" className={getLinkClass}>
-          <FaHeart /> Wishlist
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/bought" className={getLinkClass}>
-          <FaShoppingBag /> Property Bought
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/reviews" className={getLinkClass}>
-          <FaStar /> My Reviews
-        </NavLink>
-      </li>
-
-      {/* 🟢 Agent Routes */}
-      <li>
-        <NavLink to="/dashboard/agent-profile" className={getLinkClass}>
-          <FaUserTie /> Agent Profile
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/add-property" className={getLinkClass}>
-          <FaPlusCircle /> Add Property
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/my-properties" className={getLinkClass}>
-          <FaClipboardList /> My Added Properties
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/sold-properties" className={getLinkClass}>
-          <FaCheckCircle /> My Sold Properties
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/offers" className={getLinkClass}>
-          <FaHandshake /> Requested Properties
-        </NavLink>
-      </li>
-
-      {/* 🔴 Admin Routes */}
-      <li>
-        <NavLink to="/dashboard/admin-profile" className={getLinkClass}>
-          <FaUserShield /> Admin Profile
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/manage-properties" className={getLinkClass}>
-          <FaTasks /> Manage Properties
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/manage-users" className={getLinkClass}>
-          <FaUsersCog /> Manage Users
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/manage-reviews" className={getLinkClass}>
-          <FaComments /> Manage Reviews
-        </NavLink>
-      </li>
-    </ul>
+        <ul className="space-y-3">{routes}</ul>
       </aside>
 
       {/* Content */}

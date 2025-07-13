@@ -15,10 +15,11 @@ const PrivateAgentRoute = ({children}) => {
         return <Loading></Loading>
     }
     
-  if (!user || role !=="agent") {
+  // if (!user || role !=="agent" || role !=="fraud"  ) {
     
-    return <Navigate to={"/forbiden"} state={location.pathname} ></Navigate>;
-  }
+  //   return <Navigate to={"/forbiden"} state={location.pathname} ></Navigate>;
+  // }
+
   return children;
    
 };

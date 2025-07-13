@@ -42,7 +42,7 @@ const Navbar = () => {
             {/* You can replace this div with <img src="logo.png" alt="Logo" /> */}
             <span>🏠</span>
           </div>
-          <span>EstateEase</span>
+          <span>Estate Ease</span>
         </NavLink>
 
         {/* Hamburger Icon (mobile) */}

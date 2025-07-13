@@ -14,6 +14,8 @@ const ManageUsers = () => {
     },
   });
 
+  // console.log(users);
+
   const handleMakeRole = async (id, role) => {
     try {
       const res = await axiosSecure.patch(`/users/role/${id}`, { role });
@@ -26,17 +28,29 @@ const ManageUsers = () => {
     }
   };
 
-  const handleFraud = async (id, email) => {
+  
+  const handleFraud = async (id) => {
+  const confirm = await Swal.fire({
+    title: "Are you sure?",
+    text: "Mark this agent as fraud? Their properties will be removed.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, mark as fraud!",
+    confirmButtonColor: "#d33",
+  });
+
+  if (confirm.isConfirmed) {
     try {
-      const res = await axiosSecure.patch(`/users/fraud/${id}`, { email });
-      if (res.data.modifiedCount > 0) {
-        Swal.fire("Fraud Alert!", "Marked as fraud successfully", "warning");
-        refetch();
+      const res = await axiosSecure.patch(`/users/fraud/${id}`);
+      if (res.data.updateUser.modifiedCount > 0) {
+        Swal.fire("Success", "Agent marked as fraud", "success");
+        refetch(); // Refetch user list
       }
-    } catch {
-      Swal.fire("Error", "Failed to mark as fraud", "error");
+    } catch (error) {
+      Swal.fire("Error", "Failed to mark user as fraud", "error");
     }
-  };
+  }
+};
 
   const handleDelete = async (id, email) => {
     const confirm = await Swal.fire({
@@ -83,38 +97,46 @@ const ManageUsers = () => {
                 <td>{u.name}</td>
                 <td>{u.email}</td>
                 <td className="capitalize">
-                  {u.fraud ? "Fraud" : u.role || "User"}
+                  {u.role}
                 </td>
                 <td className="space-x-2">
-                  {!u.fraud && u.role !== "admin" && (
-                    <>
-                      {u.role !== "admin" && (
+                  
+                      {u.role !== "user" && u.role !== "fraud" ?(
+                        <button
+                          className="btn btn-xs btn-success"
+                          onClick={() => handleMakeRole(u._id, "user")}
+                        >
+                          Make User
+                        </button>
+                      ):""}
+                      {u.role !== "admin" && u.role !== "fraud" ?(
                         <button
                           className="btn btn-xs btn-success"
                           onClick={() => handleMakeRole(u._id, "admin")}
                         >
                           Make Admin
                         </button>
-                      )}
-                      {u.role !== "agent" && (
+                      ):""}
+                      {u.role !== "agent" && u.role !== "fraud"  ? (
                         <button
                           className="btn btn-xs btn-info"
                           onClick={() => handleMakeRole(u._id, "agent")}
                         >
                           Make Agent
                         </button>
-                      )}
-                    </>
-                  )}
+                      ):""}
+                   
+                 
 
-                  {u.role === "agent" && !u.fraud && (
+                  {u.role === "agent"? (
                     <button
                       className="btn btn-xs btn-warning"
                       onClick={() => handleFraud(u._id, u.email)}
                     >
                       Mark as Fraud
                     </button>
-                  )}
+                  ):""}
+                  {u.role === "fraud" ?'':'' }
 
                   <button
                     className="btn btn-xs btn-error"

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left: Branding & Social */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold ">EstateVerse</h2>
+          <h2 className="text-2xl font-bold ">Estate Ease</h2>
           <p className="text-sm">
             Find your perfect property with ease and trust.
           </p>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -11,6 +11,7 @@ const MakeOffer = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit } = useForm();
+  let navigate = useNavigate();
 
   // Get single property info
   const { data: property = {}, isLoading } = useQuery({
@@ -22,113 +23,79 @@ const MakeOffer = () => {
     },
   });
 
-//   const onSubmit = async (data) => {
-//     const offerAmount = parseFloat(data.offerAmount);
-//     const min = property.minPrice;
-//     const max = property.maxPrice;
+  const onSubmit = async (data) => {
+    const offerAmount = parseFloat(data.offerAmount);
+    const min = property.minPrice;
+    const max = property.maxPrice;
 
-//     if (offerAmount < min || offerAmount > max) {
-//       return Swal.fire(
-//         "Invalid Amount",
-//         `Offer must be between $${min} and $${max}`,
-//         "error"
-//       );
-//     }
-// console.log(property);
+    if (offerAmount < min || offerAmount > max) {
+      return Swal.fire(
+        "Invalid Amount",
+        `Offer must be between $${min} and $${max}`,
+        "error"
+      );
+    }
 
-//     const offerData = {
-//       propertyId: property._id,
-//       propertyImage:property.image,
-//       title: property.title,
-//       location: property.location,
-//       agentName: property.agentName,
-//       buyerEmail: user.email,
-//       buyerName: user.displayName,
-//       buyingDate: new Date().toISOString(),
-//       offerAmount,
-//       status: "pending",
-//     //   createdAt: new Date(),
-//     };
+    const offerData = {
+      propertyId: property._id,
+      propertyImage: property.image,
+      title: property.title,
+      location: property.location,
+      agentName: property.agentName,
+      agentEmail: property.agentEmail,
+      buyerEmail: user.email,
+      transactionId:'',
+      buyerName: user.displayName,
+      buyingDate: new Date().toISOString(),
+      offerAmount,
+      status: "pending",
+    };
 
-//     try {
-//       const res = await axiosSecure.post("/offers", offerData);
-//       if (res.data.insertedId) {
-//         Swal.fire("Success!", "Offer submitted successfully.", "success");
-//       }
-//     } catch (err) {
-//       Swal.fire("Error!", "Failed to submit offer.", "error");
-//     }
-//   };
-
-
-const onSubmit = async (data) => {
-  const offerAmount = parseFloat(data.offerAmount);
-  const min = property.minPrice;
-  const max = property.maxPrice;
-
-  if (offerAmount < min || offerAmount > max) {
-    return Swal.fire(
-      "Invalid Amount",
-      `Offer must be between $${min} and $${max}`,
-      "error"
-    );
-  }
-
-  const offerData = {
-    propertyId: property._id,
-    propertyImage: property.image,
-    title: property.title,
-    location: property.location,
-    agentName: property.agentName,
-    agentEmail: property.agentEmail,
-    buyerEmail: user.email,
-    buyerName: user.displayName,
-    buyingDate: new Date().toISOString(),
-    offerAmount,
-    status: "pending",
-  };
-
-  // 🔒 Confirm before submitting
-  Swal.fire({
-    title: "Are you sure?",
-    text: "Do you want to make an offer for this property?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, Make Offer!",
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-        const res = await axiosSecure.post("/offers", offerData);
-        console.log(res.data.result.insertedId);
-        if (res.data.result.insertedId) {
-          Swal.fire("Success!", "Offer submitted successfully.", "success");
-        }
-      } catch (err) {
-        // 💥 Handle already existing offer case from backend
-        if (
-          err.response &&
-          err.response.data &&
-          err.response.data.message ===
-            "You have already made an offer for this property."
-        ) {
-          Swal.fire(
-            "Already Offered!",
-            "You have already made an offer for this property.",
-            "error"
-          );
-        } else {
-          Swal.fire("Error!", "Failed to submit offer.", "error");
+    // 🔒 Confirm before submitting
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to make an offer for this property?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Offer!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axiosSecure.post("/offers", offerData);
+          console.log(res.data.result.insertedId);
+          if (res.data.result.insertedId) {
+            Swal.fire("Success!", "Offer submitted successfully.", "success");
+            navigate("/dashboard/bought");
+          }
+        } catch (err) {
+          // 💥 Handle already existing offer case from backend
+          if (
+            err.response &&
+            err.response.data &&
+            err.response.data.message ===
+              "You have already made an offer for this property."
+          ) {
+            Swal.fire(
+              "Already Offered!",
+              "You have already made an offer for this property.",
+              "error"
+            );
+          } else{
+            Swal.fire("Error!", "Failed to submit offer.", "error");
+          }
         }
       }
-    }
-  });
-};
+    });
+  };
 
-
-
-  if (isLoading) return <><Loading></Loading></>;
+  if (isLoading)
+    return (
+      <>
+        <Loading></Loading>
+      </>
+    );
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-md my-6">
