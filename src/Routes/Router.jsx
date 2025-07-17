@@ -29,6 +29,7 @@ import PrivateAgentRoute from "./PrivateAgentRoute";
 import PrivateUserRoute from "./PrivateUserRoute";
 import ManageReviews from "../Components/DashBoardRoutes/Admin/ManageReviews";
 import Payment from "../Components/DashBoardRoutes/User/Payment";
+import Profile from "../Components/DashBoardRoutes/Profile";
 
 export let router = createBrowserRouter([
   {
@@ -72,13 +73,14 @@ export let router = createBrowserRouter([
           { index: true, element: <Welcome></Welcome> },
           // user routes
           {
-            path: "profile",
+            path: "my-profile",
             element: (
-              <PrivateUserRoute>
-                <UserProfile></UserProfile>
-              </PrivateUserRoute>
+              
+                <Profile></Profile>
+              
             ),
           },
+         
           {
             path: "wishlist",
             element: (
@@ -122,14 +124,7 @@ export let router = createBrowserRouter([
           },
 
           // agent routes
-          {
-            path: "agent-profile",
-            element: (
-              <PrivateAgentRoute>
-                <AgentProfile></AgentProfile>
-              </PrivateAgentRoute>
-            ),
-          },
+         
          
           {
             path: "add-property",
@@ -176,20 +171,10 @@ export let router = createBrowserRouter([
             ),
           },
 
-          // {
-          //   path: "sold-properties",
-          //   element:<MySoldProperties></MySoldProperties>,
-          // },
+        
 
           // admin routes
-          {
-            path: "admin-profile",
-            element: (
-              <PrivateAdminRoute>
-                <AdminProfile></AdminProfile>
-              </PrivateAdminRoute>
-            ),
-          },
+         
           {
             path: "manage-properties",
             element: (

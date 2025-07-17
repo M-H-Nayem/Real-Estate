@@ -84,7 +84,7 @@ const Navbar = () => {
               <div className="flex gap-3 items-center">
                 
                 <div className="hidden  w-10 h-10 lg:mx-3 lg:flex items-center ">
-                  <img className="rounded-full" src={user.photoURL} alt="" />
+                  <img className="rounded-full" src={user?.photoURL} alt="" />
                 </div>
                 <h1 className="lg:block hidden">{user.displayName}</h1>
                 <button

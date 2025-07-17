@@ -5,9 +5,10 @@ import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import SocialLogin from "./SocialLogin";
 
 const Register = () => {
-  let axiosSecure = useAxiosSecure()
+  let axiosSecure = useAxiosSecure();
   let { createUser, user, setUser, updateUser, googleLogin } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
@@ -89,7 +90,7 @@ const Register = () => {
 
     try {
       Swal.fire({
-        title: "Uploading Image...",
+        title: "Loading...",
         allowOutsideClick: false,
         didOpen: () => {
           Swal.showLoading();
@@ -111,27 +112,27 @@ const Register = () => {
 
       //   here we will implement registration authentication
 
+      
+
       createUser(formData.email, formData.password)
-        .then(async() => {
-
- const userData = {
-    name: formData.name,
-    email: formData.email,
-    role: "user",
-    image: imageUrl,
-    created_at:new Date().toISOString()
-  };
-
-  try {
-    const res = await axiosSecure.post("/users", userData);
-    if (res.data.insertedId) {
-      console.log("User saved to database");
-    }
-  } catch (err) {
-    console.error("Error saving user to DB", err);
-  }
-
-
+        .then(async () => {
+          try {
+            const userData = {
+            name: formData.name,
+            email: formData.email,
+            role: "user",
+            by:'register',
+            image: imageUrl,
+            created_at: new Date().toISOString(),
+            last_login: new Date().toISOString(),
+          };
+            const res = await axios.post("http://localhost:5000/users", userData);
+            if (res.data.insertedId) {
+              console.log("User saved to database");
+            }
+          } catch (err) {
+            console.error("Error saving user to DB", err);
+          }
           updateUser({ displayName: formData.name, photoURL: imageUrl })
             .then(() => {
               setUser({
@@ -139,30 +140,23 @@ const Register = () => {
                 displayName: formData.name,
                 photoURL: imageUrl,
               });
-              Swal.fire({
-                icon: "success",
-                title: "Thanks, Your SignUp Complete",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-
+              // Swal.fire({
+              //   icon: "success",
+              //   title: "Thanks, Your SignUp Complete",
+              //   showConfirmButton: false,
+              //   timer: 1500,
+              // });
 
               // from here i post my user info in db
-
-            
- 
-
-
-
               navigate(`${location.state ? location.state : "/"}`);
             })
             .catch((error) => {
-               setUser(user);
+              setUser(user);
             });
+            Swal.fire("Success!", "Registration completed.", "success");
         })
-        .catch(() => {});
+        .catch((err) => {console.log(err);});
 
-      Swal.fire("Success!", "Registration completed.", "success");
 
       // Reset form if you want:
       setFormData({
@@ -196,6 +190,8 @@ const Register = () => {
       image: file || null,
     }));
   };
+
+  
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-md">
@@ -340,6 +336,7 @@ const Register = () => {
           <Link to={"/login"}>Login here</Link>
         </button>
       </p>
+      {/* <SocialLogin></SocialLogin> */}
     </div>
   );
 };

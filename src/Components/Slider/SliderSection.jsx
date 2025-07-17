@@ -68,7 +68,7 @@ const SliderSection = () => {
           {sliderData.map((slide) => (
             <div key={slide.id} className="relative">
               <div
-                className="h-[75vh] w-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
+                className="lg:min-h-[70vh] min-h-[40vh] sm:min-h-[55vh] w-full bg-cover bg-center bg-no-repeat flex items-center justify-center"
                 style={{ backgroundImage: `url(${slide.img})` }}
               >
                 <div className="absolute inset-0 bg-black/50 z-10"></div>

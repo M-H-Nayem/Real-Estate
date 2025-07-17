@@ -57,7 +57,12 @@ const Wishlist = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">My Wishlist</h2>
-      <div className="overflow-x-auto">
+
+
+      {wishlist?.length === 0 ? (
+          <p className="text-center text-gray-500 mt-5">No properties in wishlist.</p>
+        ):
+      <><div className="overflow-x-auto">
         <table className="table w-full bg-white shadow-md">
           <thead className="bg-gray-200 text-gray-800">
             <tr>
@@ -116,7 +121,7 @@ const Wishlist = () => {
         {wishlist.length === 0 && (
           <p className="text-center text-gray-500 mt-5">No properties in wishlist.</p>
         )}
-      </div>
+      </div></>}
     </div>
   );
 };

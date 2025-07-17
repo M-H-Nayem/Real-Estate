@@ -45,9 +45,16 @@ const ManageProperties = () => {
   if (isLoading) return <><Loading></Loading></>;
 
   return (
-    <div className="overflow-x-auto bg-white p-4 shadow rounded-xl">
-      <h2 className="text-2xl font-semibold mb-4">Manage All Properties</h2>
-      <table className="table table-zebra w-full text-sm">
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Manage Properties</h2>
+
+
+      {properties?.length === 0 ? (
+          <p className="text-center text-gray-500 mt-5">No Property is added by any Agent</p>
+        ):
+      <>
+      
+      <table className="table table-zebra w-full text-sm bg-amber-50">
         <thead>
           <tr className="bg-base-200 text-gray-700">
             <th>No</th>
@@ -112,6 +119,8 @@ const ManageProperties = () => {
           ))}
         </tbody>
       </table>
+      
+      </>}
     </div>
   );
 };

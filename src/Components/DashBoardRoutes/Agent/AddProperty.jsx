@@ -37,13 +37,25 @@ const AddProperty = () => {
 
     try {
         const apiKey = import.meta.env.VITE_IMAGE_API;
+        Swal.fire({
+                title: "Loading...",
+                allowOutsideClick: false,
+                didOpen: () => {
+                  Swal.showLoading();
+                },
+              });
       const imgRes = await axios.post(
         `https://api.imgbb.com/1/upload?key=${apiKey}`,
         formData
       );
+
+      
       console.log(imgRes);
 
       const imageUrl = imgRes.data.data.display_url;
+
+            Swal.close();
+      
 
       const propertyData = {
         title,

@@ -40,15 +40,7 @@ const DashBoard = () => {
   if (role === "user") {
     routes = (
       <>
-        <li
-          onClick={() => {
-            setIsSidebarOpen(false);
-          }}
-        >
-          <NavLink to="/dashboard/profile" className={getLinkClass}>
-            <FaUserCircle /> My Profile
-          </NavLink>
-        </li>
+        
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -58,6 +50,15 @@ const DashBoard = () => {
             <FaHeart /> Wishlist
           </NavLink>
         </li>
+        {/* <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/be-an-agent" className={getLinkClass}>
+            <FaUserCircle /> Be an Agent
+          </NavLink>
+        </li> */}
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -85,7 +86,7 @@ const DashBoard = () => {
   if (role === "agent" || role === "fraud" ) {
     routes = (
       <>
-        <li
+        {/* <li
           onClick={() => {
             setIsSidebarOpen(false);
           }}
@@ -93,7 +94,7 @@ const DashBoard = () => {
           <NavLink to="/dashboard/agent-profile" className={getLinkClass}>
             <FaUserTie /> Agent Profile
           </NavLink>
-        </li>
+        </li> */}
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -139,7 +140,7 @@ const DashBoard = () => {
   if (role === "admin") {
     routes = (
       <>
-        <li
+        {/* <li
           onClick={() => {
             setIsSidebarOpen(false);
           }}
@@ -147,7 +148,7 @@ const DashBoard = () => {
           <NavLink to="/dashboard/admin-profile" className={getLinkClass}>
             <FaUserShield /> Admin Profile
           </NavLink>
-        </li>
+        </li> */}
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -197,7 +198,15 @@ const DashBoard = () => {
         </div>
 
         {/* Sidebar Links */}
-        <ul className="space-y-3">{routes}</ul>
+        <ul className="space-y-3"><li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/my-profile" className={getLinkClass}>
+            <FaUserCircle /> My Profile
+          </NavLink>
+        </li>{routes}</ul>
       </aside>
 
       {/* Content */}

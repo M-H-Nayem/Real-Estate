@@ -43,6 +43,7 @@ const MyAddedProperties = () => {
   return (
 <>
 <title>My-Added-Properties</title>
+      <h2 className="text-2xl font-bold mb-4">My Added Properties</h2>
 {properties.length === 0 ? (
         <div className="text-center mt-16 space-y-4" >
           <h2 className="text-2xl font-semibold text-gray-700">No Properties Added Yet</h2>
@@ -71,18 +72,26 @@ const MyAddedProperties = () => {
                   <span className="text-green-600 font-bold flex items-center gap-1">
                     <FaCheckCircle /> Verified
                   </span>
-                ) : property.verification === "rejected" ? (
+                ) :
+                 property.verification === "rejected" ? (
                   <span className="text-red-600 font-bold flex items-center gap-1">
                     <FaTimesCircle /> Rejected
                   </span>
-                ) : (
+                ) :
+                 property.verification === "Sold" ? (
+                 <span className="text-gray-700 font-bold flex items-center gap-1">
+    <FaCheckCircle className="text-gray-500" /> Sold
+  </span>
+                ) :
+                
+                (
                   <span className="text-yellow-500 font-bold">Pending</span>
                 )}
               </div>
               <div className="flex gap-2 mt-4">
-                {property.verification !== "rejected" && (
+                {property.verification !== "rejected" && property.verification !== "Sold" && (
                   <Link to={`/dashboard/update-property/${property._id}`}>
-                    <button className="btn btn-sm btn-outline text-blue-600">
+                    <button  className="btn btn-sm btn-outline text-blue-600">
                       <FaEdit /> Update
                     </button>
                   </Link>

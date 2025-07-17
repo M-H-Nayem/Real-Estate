@@ -41,8 +41,15 @@ const RequestedProperties = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">
-        Requested / Offered Properties
+        Requested Properties
       </h2>
+
+      {offers.length===0? 
+          <p className="text-center text-gray-500 mt-5">No property is Requested.</p>
+
+      
+      :
+      
       <div className="overflow-x-auto">
         <table className="table w-full shadow-md bg-white">
           <thead className="bg-gray-200 text-gray-700">
@@ -74,10 +81,13 @@ const RequestedProperties = () => {
                 <td>${offer.offerAmount}</td>
                 <td>
                   <span
-                    className={`badge font-semibold py-4 ${
+                    className={`badge font-semibold capitalize py-4 ${
                       offer.status === "pending"
                         ? "badge-warning"
-                        : offer.status === "accepted"
+                        :
+                        offer.status === "accepted"
+                        ? "badge-success":
+                        offer.status === "bought"
                         ? "badge-success"
                         : "badge-error"
                     }`}
@@ -117,9 +127,15 @@ const RequestedProperties = () => {
                     <span
                       className={`text-sm capitalize ${
                         offer.status === "accepted" && "btn btn-sm btn-success"
-                      }  ${
+                      } 
+                       ${
                         offer.status === "rejected" && "btn btn-sm btn-error"
-                      }`}
+                      }
+                       ${
+                        offer.status === "bought" && "btn btn-sm btn-success"
+                      }
+                      `
+                    }
                     >
                       {offer.status}
                     </span>
@@ -135,6 +151,7 @@ const RequestedProperties = () => {
           </p>
         )}
       </div>
+      }
     </div>
   );
 };

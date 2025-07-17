@@ -86,8 +86,9 @@ const ManageUsers = () => {
               <th>#</th>
               <th>User Name</th>
               <th>Email</th>
+              <th>By</th>
               <th>Role</th>
-              <th>Actions</th>
+              <th className="">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -96,14 +97,14 @@ const ManageUsers = () => {
                 <td>{i + 1}</td>
                 <td>{u.name}</td>
                 <td>{u.email}</td>
+                <td>{u.by}</td>
                 <td className="capitalize">
                   {u.role}
                 </td>
-                <td className="space-x-2">
-                  
+                <td className="space-x-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 w-fit">           
                       {u.role !== "user" && u.role !== "fraud" ?(
                         <button
-                          className="btn btn-xs btn-success"
+                          className="btn btn-xs btn-success py-4 md:py-2 lg:py-0"
                           onClick={() => handleMakeRole(u._id, "user")}
                         >
                           Make User
@@ -125,9 +126,6 @@ const ManageUsers = () => {
                           Make Agent
                         </button>
                       ):""}
-                   
-                 
-
                   {u.role === "agent"? (
                     <button
                       className="btn btn-xs btn-warning"
@@ -136,7 +134,13 @@ const ManageUsers = () => {
                       Mark as Fraud
                     </button>
                   ):""}
-                  {u.role === "fraud" ?'':'' }
+                  {u.role === "fraud" ?<button
+                      className="btn btn-xs btn-error"
+                      // onClick={() => handleFraud(u._id, u.email)}
+                    >
+                     Fraud
+                    </button>:'' }
+                  
 
                   <button
                     className="btn btn-xs btn-error"

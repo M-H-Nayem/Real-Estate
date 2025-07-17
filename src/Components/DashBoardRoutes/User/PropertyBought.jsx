@@ -69,6 +69,7 @@ const handleDeleteOffer = async (id) => {
               <th>Action</th>
             </tr>
           </thead>
+
           <tbody>
             {offers.map((offer) => (
               <tr key={offer._id}>
@@ -85,7 +86,7 @@ const handleDeleteOffer = async (id) => {
                 <td>${offer?.offerAmount}</td>
                 <td>
                   <span
-                    className={`px-2 py-1 text-sm rounded ${
+                    className={`px-2 py-1 text-sm rounded capitalize ${
                       offer.status === "pending"
                         ? "bg-yellow-100 text-yellow-700"
                         : offer.status === "accepted"

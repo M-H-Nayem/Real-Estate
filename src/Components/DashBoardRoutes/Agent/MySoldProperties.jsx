@@ -23,6 +23,12 @@ const MySoldProperties = () => {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">My Sold Properties</h2>
+
+      {soldProperties.length===0?
+          <p className="text-center text-gray-500 mt-5">No property sold yet.</p>
+      :
+
+
       <div className="overflow-x-auto">
         <table className="table w-full bg-white shadow-md">
           <thead className="bg-gray-200 text-gray-800">
@@ -60,6 +66,7 @@ const MySoldProperties = () => {
           <p className="text-center text-gray-500 mt-5">No sold properties yet.</p>
         )}
       </div>
+      }
     </div>
   );
 };

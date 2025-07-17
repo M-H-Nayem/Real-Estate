@@ -5,12 +5,13 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
-  let { logIn } = useAuth();
-  let navigate = useNavigate()
+  let { logIn} = useAuth();
+  let navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-let location = useLocation();
+  let location = useLocation();
   const {
     register,
     handleSubmit,
@@ -107,7 +108,9 @@ let location = useLocation();
         <button className="text-primary font-semibold hover:underline">
           <Link to={"/register"}>Register here</Link>
         </button>
+        
       </p>
+      {/* <SocialLogin></SocialLogin> */}
     </div>
   );
 };

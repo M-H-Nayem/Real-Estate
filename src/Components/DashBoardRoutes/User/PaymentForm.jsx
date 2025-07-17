@@ -12,7 +12,7 @@ const PaymentForm = ({ offer }) => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
-  console.log(offer);
+  // console.log(offer);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,13 +55,16 @@ const PaymentForm = ({ offer }) => {
         offerId: offer._id,
       };
 
-      console.log(paymentData);
+      // console.log(paymentData);
 
       const res = await axiosSecure.patch(`/offers/payment`, paymentData);
+      await axiosSecure.patch(`/properties/sold/${offer.propertyId}`);
 
       if (res.data.modifiedCount > 0) {
         Swal.fire("Success", "Payment completed!", "success");
       }
+
+      
 
       setLoading(false);
     }

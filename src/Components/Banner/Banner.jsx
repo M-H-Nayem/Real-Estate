@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <>
     <section
-      className="relative min-h-[70vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="relative lg:min-h-[70vh] min-h-[40vh] sm:min-h-[55vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${BannerImg})`,
       }}

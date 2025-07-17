@@ -2,9 +2,13 @@
 
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
+import useUserRole from "../../../Hooks/useUserRole";
 
 const AdminProfile = () => {
   const { user } = useAuth();
+  let {role }= useUserRole()
+  console.log(role);
+
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-xl">
@@ -21,8 +25,8 @@ const AdminProfile = () => {
         <div className="text-center space-y-2">
           <h3 className="text-xl font-semibold">{user?.displayName}</h3>
           <p className="text-gray-600">{user?.email}</p>
-          <p className="text-sm text-white bg-red-500 px-3 py-1 rounded-full inline-block mt-1">
-            Admin
+          <p className="text-sm text-white bg-red-500 px-3 py-1 rounded-full inline-block mt-1 capitalize">
+            {role}
           </p>
         </div>
       </div>
