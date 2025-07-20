@@ -30,6 +30,7 @@ import PrivateUserRoute from "./PrivateUserRoute";
 import ManageReviews from "../Components/DashBoardRoutes/Admin/ManageReviews";
 import Payment from "../Components/DashBoardRoutes/User/Payment";
 import Profile from "../Components/DashBoardRoutes/Profile";
+import AdvertiseProperties from "../Components/DashBoardRoutes/Admin/AdvertiseProperties";
 
 export let router = createBrowserRouter([
   {
@@ -196,6 +197,14 @@ export let router = createBrowserRouter([
             element: (
               <PrivateAdminRoute>
                 <ManageReviews></ManageReviews>
+              </PrivateAdminRoute>
+            ),
+          },
+          {
+            path: "advertise",
+            element: (
+              <PrivateAdminRoute>
+                <AdvertiseProperties></AdvertiseProperties>
               </PrivateAdminRoute>
             ),
           },

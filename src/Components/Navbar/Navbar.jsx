@@ -12,7 +12,7 @@ const Navbar = () => {
   let links = [
     { name: "Home", to: "/" },
     { name: "All Properties", to: "/properties" },
-    { name: "Dashboard", to: "/dashboard" },
+    // { name: "Dashboard", to: "/dashboard" },
   ];
   let handleLogOut = () => {
     logOut()
@@ -81,6 +81,21 @@ const Navbar = () => {
           })}
           {user ? (
             <>
+            <li className="md:mx-2">
+                <NavLink
+                  to={'/dashboard'}
+                  className={({ isActive }) =>
+                    `block px-4 py-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors ${
+                      isActive
+                        ? "bg-secondary text-primary-content font-semibold"
+                        : ""
+                    }`
+                  }
+                  onClick={() => setNavOpen(false)}
+                >
+                  Dashboard
+                </NavLink>
+              </li>
               <div className="flex gap-3 items-center">
                 
                 <div className="hidden  w-10 h-10 lg:mx-3 lg:flex items-center ">
@@ -97,6 +112,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
+            
               <li className="md:mx-2">
                 <NavLink
                   to={"/login"}

@@ -10,6 +10,7 @@ import {
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "./firebase.init";
 import { AuthContext } from "./AuthContext";
+import axios from "axios";
 
 // export let AuthContext = createContext();
 const provider = new GoogleAuthProvider();
@@ -41,8 +42,22 @@ const provider = new GoogleAuthProvider();
   };
 
   useEffect(() => {
-    let unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    let unSubscribe = onAuthStateChanged(auth, async(currentUser) => {
       setUser(currentUser);
+
+if (currentUser) {
+      const res = await axios.post("https://real-estate-platform-server-six.vercel.app/jwt", {
+        email: currentUser.email,
+      });
+      const token = res.data.token;
+
+      // Store token
+      localStorage.setItem("access-token", token);
+    } else {
+      localStorage.removeItem("access-token");
+    }
+
+
         setLoading(false);
         // console.log(currentUser?.accessToken);
     });

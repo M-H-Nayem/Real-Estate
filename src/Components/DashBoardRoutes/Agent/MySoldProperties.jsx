@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loading from "../../Loading/Loading";
 
 const MySoldProperties = () => {
   const { user } = useAuth();
@@ -18,17 +19,23 @@ const MySoldProperties = () => {
     },
   });
 
-  if (isLoading) return <div className="text-center mt-10">Loading...</div>;
+  const totalAmount = soldProperties.reduce(
+    (sum, property) => sum + (property.offerAmount || 0),
+    0
+  );
+
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">My Sold Properties</h2>
+       <div className="text-right text-lg font-semibold mb-4 text-green-700">
+        Total Sold Amount: ${totalAmount}
+      </div>
 
       {soldProperties.length===0?
           <p className="text-center text-gray-500 mt-5">No property sold yet.</p>
       :
-
-
       <div className="overflow-x-auto">
         <table className="table w-full bg-white shadow-md">
           <thead className="bg-gray-200 text-gray-800">

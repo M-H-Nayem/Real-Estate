@@ -26,7 +26,7 @@ try {
             image: user.photoURL,
             created_at: new Date().toISOString(),
           } ;   
-            const res = await axios.post("http://localhost:5000/users", userData);
+            const res = await axios.post("https://real-estate-platform-server-six.vercel.app/users", userData);
             console.log(res.data);
             if (res.data.insertedId) {
               console.log("User saved to database");

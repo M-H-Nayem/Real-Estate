@@ -140,15 +140,7 @@ const DashBoard = () => {
   if (role === "admin") {
     routes = (
       <>
-        {/* <li
-          onClick={() => {
-            setIsSidebarOpen(false);
-          }}
-        >
-          <NavLink to="/dashboard/admin-profile" className={getLinkClass}>
-            <FaUserShield /> Admin Profile
-          </NavLink>
-        </li> */}
+        
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -156,6 +148,15 @@ const DashBoard = () => {
         >
           <NavLink to="/dashboard/manage-properties" className={getLinkClass}>
             <FaTasks /> Manage Properties
+          </NavLink>
+        </li>
+        <li
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
+        >
+          <NavLink to="/dashboard/advertise" className={getLinkClass}>
+            <FaUserShield /> Advertise Property
           </NavLink>
         </li>
         <li
