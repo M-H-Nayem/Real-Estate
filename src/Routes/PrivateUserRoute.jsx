@@ -10,13 +10,12 @@ const PrivateUserRoute = ({children}) => {
         let {role, isLoading}= useUserRole()
     let location = useLocation()
     // console.log(location);
-    console.log(role);
+    // console.log(role);
     if (isLoading) {
         return <Loading></Loading>
     }
     
   if (!user || role !=="user") {
-    
     return <Navigate to={"/forbiden"} state={location.pathname} ></Navigate>;
   }
   return children;

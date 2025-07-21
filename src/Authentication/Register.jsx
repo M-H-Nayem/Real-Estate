@@ -103,12 +103,12 @@ const Register = () => {
 
       // Now you have the imageUrl, you can send it with other form data
       //   console.log("Image URL:", imageUrl);
-      console.log("User Data:", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        imageUrl,
-      });
+      // console.log("User Data:", {
+      //   name: formData.name,
+      //   email: formData.email,
+      //   password: formData.password,
+      //   imageUrl,
+      // });
 
       //   here we will implement registration authentication
 
@@ -128,7 +128,7 @@ const Register = () => {
           };
             const res = await axios.post("https://real-estate-platform-server-six.vercel.app/users", userData);
             if (res.data.insertedId) {
-              console.log("User saved to database");
+              // console.log("User saved to database");
             }
           } catch (err) {
             console.error("Error saving user to DB", err);
@@ -198,7 +198,7 @@ const Register = () => {
       <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
         Register
       </h2>
-
+<title>Register</title>
       <form onSubmit={handleSubmit} noValidate>
         {/* Name */}
         <label className="block mb-2 font-medium" htmlFor="name">
@@ -336,7 +336,7 @@ const Register = () => {
           <Link to={"/login"}>Login here</Link>
         </button>
       </p>
-      {/* <SocialLogin></SocialLogin> */}
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

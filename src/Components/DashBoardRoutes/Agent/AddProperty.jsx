@@ -50,7 +50,7 @@ const AddProperty = () => {
       );
 
       
-      console.log(imgRes);
+      // console.log(imgRes);
 
       const imageUrl = imgRes.data.data.display_url;
 
@@ -105,7 +105,7 @@ const AddProperty = () => {
       <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
         🏡 Add New Property
       </h2>
-
+<title>Add Property</title>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"

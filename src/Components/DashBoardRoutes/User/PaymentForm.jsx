@@ -6,12 +6,14 @@ import {
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const PaymentForm = ({ offer }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
+  let navigate = useNavigate()
   // console.log(offer);
 
   const handleSubmit = async (e) => {
@@ -63,15 +65,15 @@ const PaymentForm = ({ offer }) => {
       if (res.data.modifiedCount > 0) {
         Swal.fire("Success", "Payment completed!", "success");
       }
-
+navigate('/dashboard/bought')
       
-
       setLoading(false);
     }
   };
 
   return (
     <div className="max-w-xl mx-auto p-4 bg-white rounded-md shadow">
+      <title>Payment</title>
       <h2 className="text-2xl font-semibold mb-4">Make Payment</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <CardElement />

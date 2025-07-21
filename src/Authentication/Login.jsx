@@ -19,7 +19,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Login Data:", data);
+    // console.log("Login Data:", data);
     logIn(data.email, data.password)
       .then(() => {
         Swal.fire({
@@ -46,7 +46,7 @@ const Login = () => {
       <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
         Login
       </h2>
-
+<title>Login</title>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Email */}
         <label className="block mb-2 font-medium" htmlFor="email">
@@ -110,7 +110,7 @@ const Login = () => {
         </button>
         
       </p>
-      {/* <SocialLogin></SocialLogin> */}
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

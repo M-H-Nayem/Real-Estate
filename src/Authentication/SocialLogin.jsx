@@ -27,9 +27,9 @@ try {
             created_at: new Date().toISOString(),
           } ;   
             const res = await axios.post("https://real-estate-platform-server-six.vercel.app/users", userData);
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.insertedId) {
-              console.log("User saved to database");
+              // console.log("User saved to database");
             }
             navigate(`${location.state ? location.state : "/"}`);
 

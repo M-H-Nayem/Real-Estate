@@ -25,7 +25,7 @@ const { id } = useParams();
   if (isLoading) return <Loading />;
 
 
-console.log(id);
+// console.log(id);
   return (
     <Elements stripe={stripePromise}>
       <PaymentForm offer={offer}></PaymentForm>

@@ -23,7 +23,7 @@ const AllProperties = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchQuery(searchTerm);
     refetch() // Triggers the query
   };

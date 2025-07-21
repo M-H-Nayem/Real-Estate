@@ -7,7 +7,7 @@ import useUserRole from "../../../Hooks/useUserRole";
 const AdminProfile = () => {
   const { user } = useAuth();
   let {role }= useUserRole()
-  console.log(role);
+  // console.log(role);
 
 
   return (

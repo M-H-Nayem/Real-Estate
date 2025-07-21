@@ -5,7 +5,7 @@ import useUserRole from "../../Hooks/useUserRole";
 const Profile = () => {
   const { user } = useAuth();
   let {role }= useUserRole()
-  console.log(role);
+  // console.log(role);
 
   if (role==='admin') {
     return (
@@ -62,6 +62,7 @@ const Profile = () => {
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
         👤 My Profile
       </h2>
+      <title>Profile</title>
 
       <div className="flex flex-col items-center gap-4">
         <img

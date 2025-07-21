@@ -10,7 +10,7 @@ const PrivateAdminRoute = ({children}) => {
         let {role, isLoading}= useUserRole()
     let location = useLocation()
     // console.log(location);
-    console.log(role);
+    // console.log(role);
     if (isLoading) {
         return <Loading></Loading>
     }

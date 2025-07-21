@@ -43,7 +43,7 @@ const RequestedProperties = () => {
       <h2 className="text-2xl font-bold mb-4">
         Requested Properties
       </h2>
-
+<title>Requested Property </title>
       {offers.length===0? 
           <p className="text-center text-gray-500 mt-5">No property is Requested.</p>
 

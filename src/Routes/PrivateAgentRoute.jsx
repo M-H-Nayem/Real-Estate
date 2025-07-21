@@ -10,15 +10,16 @@ const PrivateAgentRoute = ({children}) => {
         let {role, isLoading}= useUserRole()
     let location = useLocation()
     // console.log(location);
-    console.log(role);
-    if (isLoading) {
+    // console.log(role);
+    if (isLoading ) {
         return <Loading></Loading>
     }
+
+
+    if (!user || (role !== "agent" && role !== "fraud")) {  // bracket e 2 ta sorto leka lagbe , nahole alada alada define korbe
+    return <Navigate to="/forbiden" state={location.pathname} />;
+  }
     
-  // if (!user || role !=="agent" || role !=="fraud"  ) {
-    
-  //   return <Navigate to={"/forbiden"} state={location.pathname} ></Navigate>;
-  // }
 
   return children;
    

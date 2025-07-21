@@ -20,7 +20,7 @@ const Wishlist = () => {
   });
 
   const handleRemove = async (id) => {
-    console.log(id);
+    // console.log(id);
   try {
     const confirm = await Swal.fire({
       title: 'Are you sure?',
@@ -32,7 +32,7 @@ const Wishlist = () => {
       confirmButtonText: 'Yes, remove it!',
     });
 
-    console.log(confirm);
+    // console.log(confirm);
 
     if (confirm.isConfirmed) {
       // for delete an wishlist by id
@@ -58,7 +58,7 @@ const Wishlist = () => {
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">My Wishlist</h2>
 
-
+<title>Wishlist</title>
       {wishlist?.length === 0 ? (
           <p className="text-center text-gray-500 mt-5">No properties in wishlist.</p>
         ):

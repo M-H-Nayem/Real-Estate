@@ -18,7 +18,7 @@ const MakeOffer = () => {
     queryKey: ["singleProperty", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/properties/${id}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -64,7 +64,7 @@ const MakeOffer = () => {
       if (result.isConfirmed) {
         try {
           const res = await axiosSecure.post("/offers", offerData);
-          console.log(res.data.result.insertedId);
+          // console.log(res.data.result.insertedId);
           if (res.data.result.insertedId) {
             Swal.fire("Success!", "Offer submitted successfully.", "success");
             navigate("/dashboard/bought");
@@ -100,6 +100,7 @@ const MakeOffer = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-md my-6">
       <h2 className="text-2xl font-bold mb-4">Make an Offer</h2>
+      <title>Make Offer</title>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Readonly Fields */}
         <label className="font-semibold">Property Title</label>

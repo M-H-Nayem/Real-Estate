@@ -52,7 +52,7 @@ const handleDeleteOffer = async (id) => {
   return (
     <div className="p-4 overflow-x-auto">
       <h2 className="text-2xl font-bold mb-6">My Property Offers</h2>
-
+<title>Property Bought</title>
       {offers.length === 0 ? (
         <p className="text-center text-gray-500">You haven’t made any offers yet.</p>
       ) : (

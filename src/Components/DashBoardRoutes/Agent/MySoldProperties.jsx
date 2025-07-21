@@ -32,7 +32,7 @@ const MySoldProperties = () => {
        <div className="text-right text-lg font-semibold mb-4 text-green-700">
         Total Sold Amount: ${totalAmount}
       </div>
-
+<title>My Sold Properties</title>
       {soldProperties.length===0?
           <p className="text-center text-gray-500 mt-5">No property sold yet.</p>
       :

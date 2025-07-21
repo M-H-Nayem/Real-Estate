@@ -44,7 +44,7 @@ const MyReviews = () => {
   return (
    <div className="p-4">
       <h2 className="text-2xl font-bold mb-6">My Reviews</h2>
-
+<title>My Reviews</title>
       {reviews.length === 0 && (
         <p className="text-center text-gray-500">You haven't added any reviews yet.</p>
       )}

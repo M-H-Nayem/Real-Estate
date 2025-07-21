@@ -42,7 +42,7 @@ const MyAddedProperties = () => {
 
   return (
 <>
-<title>My-Added-Properties</title>
+<title>My Added Properties</title>
       <h2 className="text-2xl font-bold mb-4">My Added Properties</h2>
 {properties.length === 0 ? (
         <div className="text-center mt-16 space-y-4" >
