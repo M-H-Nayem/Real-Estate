@@ -182,7 +182,7 @@ const DashBoard = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row ">
+    <div className="min-h-screen flex flex-col lg:flex-row pt-[72px] ">
       {/* Sidebar */}
       <title>Dashboard</title>
       <aside
@@ -213,7 +213,7 @@ const DashBoard = () => {
       {/* Content */}
       <main className="border-l flex-1 ml-0 lg:ml-64 p-4 bg-gray-100 min-h-screen">
         {/* Mobile Navbar */}
-        <div className="lg:hidden flex justify-between items-center mb-4 mx-[5%]">
+        <div className="lg:hidden flex justify-between items-center mb-4 ">
           <h2 className="text-xl font-bold">Dashboard</h2>
           <button onClick={toggleSidebar}>
             <FaBars className="text-2xl" />

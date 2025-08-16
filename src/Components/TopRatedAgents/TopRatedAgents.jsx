@@ -4,12 +4,15 @@ const TopRatedAgents = () => {
   const topAgents = [
     {
       name: "MH Nayem",
-      image: "https://i.ibb.co/8gtjLDFy/download-3.png",
+      image: "https://i.ibb.co.com/x8Gw9rH8/download-9.png",
       propertiesSold: 12,
     },
+
+    
+
     {
       name: "Sarah Hossain",
-      image: "https://i.ibb.co/Ld1bz3bJ/download-2.png",
+      image: "https://i.ibb.co.com/4ZL0wB3W/download-10.png",
       propertiesSold: 9,
     },
     {
@@ -20,8 +23,8 @@ const TopRatedAgents = () => {
   ];
 
   return (
-    <section className="py-14 bg-gradient-to-r from-white via-blue-50 to-white">
-      <div className="max-w-6xl mx-auto px-4 text-center">
+    <section className="pb-14 ">
+      <div className="max-w-[1400px] mx-auto px-3 lg:px-0 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800">
           🌟 Top Rated Agents
         </h2>

@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -28,9 +28,16 @@ const Navbar = () => {
       .catch(() => {});
   };
 
+  let normalEffect = 'block px-4  py-2 rounded-md hover:bg-gray-500 hover:text-primary-content transition-colors'
+  let activeEffect = 'bg-gray-500 text-gray-100 font-semibold shadow-lg'
+
   return (
-    <nav className="bg-primary text-primary-content shadow-md sticky top-0 z-50 lg:px-[10%]" >
-      <div className=" mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+
+    <div className="fixed top-0 z-100 w-full bg-gray-600 text-gray-200 shadow-md ">
+
+
+    <nav className="max-w-[1400px] mx-auto" >
+      <div className=" mx-auto flex items-center justify-between px-4 lg:px-0 py-3 md:py-4">
         {/* Logo + Website Name */}
         <NavLink
           to="/"
@@ -38,16 +45,16 @@ const Navbar = () => {
           onClick={() => setNavOpen(false)}
         >
           {/* Placeholder for Logo */}
-          <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center text-primary-content">
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-white">
             {/* You can replace this div with <img src="logo.png" alt="Logo" /> */}
             <span>🏠</span>
           </div>
-          <span>Estate Ease</span>
+          <span className="text-2xl">Estate Ease</span>
         </NavLink>
 
         {/* Hamburger Icon (mobile) */}
         <button
-          className="lg:hidden text-2xl focus:outline-none mx-[5%]  "
+          className="lg:hidden text-2xl focus:outline-none   "
           onClick={toggleNav}
           aria-label="Toggle Menu"
         >
@@ -66,9 +73,9 @@ const Navbar = () => {
                 <NavLink
                   to={to}
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors ${
+                    `${normalEffect} ${
                       isActive
-                        ? "bg-secondary text-primary-content font-semibold"
+                        ? `${activeEffect}`
                         : ""
                     }`
                   }
@@ -85,9 +92,9 @@ const Navbar = () => {
                 <NavLink
                   to={'/dashboard'}
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors ${
+                    `${normalEffect} ${
                       isActive
-                        ? "bg-secondary text-primary-content font-semibold"
+                        ? `${activeEffect}`
                         : ""
                     }`
                   }
@@ -98,13 +105,13 @@ const Navbar = () => {
               </li>
               <div className="flex gap-3 items-center">
                 
-                <div className="hidden  w-10 h-10 lg:mx-3 lg:flex items-center ">
+                < ><div className="hidden   w-10 h-10 lg:mx-3 lg:flex items-center ">
                   <img className="rounded-full" src={user?.photoURL} alt="" />
-                </div>
-                <h1 className="lg:block hidden">{user.displayName}</h1>
+                </div></>
+                {/* <h1 className="lg:block hidden">{user.displayName}</h1> */}
                 <button
                   onClick={handleLogOut}
-                  className="block px-4 btn border-none py-2 md:mx-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors bg-secondary text-primary-content font-semibold text-start"
+                  className="block px-4 btn  border-none py-2 md:mx-2 rounded-md hover:bg-gray-400 hover:text-white transition-colors bg-gray-500 text-white font-semibold text-start"
                 >
                   LogOut
                 </button>
@@ -117,9 +124,9 @@ const Navbar = () => {
                 <NavLink
                   to={"/login"}
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors ${
+                    `${normalEffect} ${
                       isActive
-                        ? "bg-secondary text-primary-content font-semibold"
+                        ? `${activeEffect}`
                         : ""
                     }`
                   }
@@ -132,9 +139,9 @@ const Navbar = () => {
                 <NavLink
                   to={"/register"}
                   className={({ isActive }) =>
-                    `block px-4 py-2 rounded-md hover:bg-secondary hover:text-primary-content transition-colors ${
+                    `${normalEffect} ${
                       isActive
-                        ? "bg-secondary text-primary-content font-semibold"
+                        ? `${activeEffect}`
                         : ""
                     }`
                   }
@@ -148,6 +155,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
+    </div>
   );
 };
 

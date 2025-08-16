@@ -122,8 +122,8 @@ const PropertyDetails = () => {
   if (isLoading) return <Loading></Loading>;
 
   return (
-    <div className="min-h-screen bg-gray-200 black py-20">
-      <div className="max-w-5xl mx-auto px-4 py-8 bg-white rounded-2xl">
+    <div className="min-h-screen bg-gray-200 black lg:pt-[72px] flex items-center justify-center">
+      <div className="max-w-5xl mx-auto px-4 py-4 bg-white rounded-2xl">
         <div className="grid md:grid-cols-2 gap-6 md:justify-center">
           <img
             src={property.image}

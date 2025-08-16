@@ -9,8 +9,8 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 px-6 py-12 ">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <footer className="bg-gray-600 text-gray-300 px-6 py-12 ">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* Branding & Social */}
         <div className="space-y-4">
           <h2 className="text-3xl font-bold text-white">EstateEase</h2>

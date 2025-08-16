@@ -7,18 +7,22 @@ import HowItWorks from '../../Components/HowItWorks/HowItWorks';
 import TopRatedAgents from '../../Components/TopRatedAgents/TopRatedAgents';
 import FAQSection from '../../Components/FAQ/FAQSection';
 import WhyChooseUs from '../../Components/WhyChoseUs/WhyChooseUs';
+import Banner1 from '../../Components/Banner/Banner1';
+import Feateres from '../../Components/Features/Feateres';
 
 const HomePage = () => {
     return (
         <div>
             <title>Home</title>
-            <Banner></Banner>
-            <Slider></Slider>
+            {/* <Banner></Banner> */}
+            <Banner1></Banner1>
+            {/* <Slider></Slider> */}
             <AdvertisementSection></AdvertisementSection>
-            <TopRatedAgents></TopRatedAgents>
-            <LatestUserReviews></LatestUserReviews>
+            <Feateres></Feateres>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
+            <TopRatedAgents></TopRatedAgents>
+            <LatestUserReviews></LatestUserReviews>
             <FAQSection></FAQSection>
         </div>
     );

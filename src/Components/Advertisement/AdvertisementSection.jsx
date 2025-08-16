@@ -13,21 +13,23 @@ const AdvertisementSection = () => {
     },
   });
 
-  if (advertised.length === 0)
-    { return  (
-  <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 rounded-md shadow-md max-w-5xl mx-auto my-8">
-    <h2 className="text-xl font-semibold mb-1">🚧 No Advertised Properties Available</h2>
-    <p className="text-sm">
-      Please check back later — exciting properties might be advertised soon!
-    </p>
-  </div>
-);;} // Don’t render if no data
+//   if (advertised.length === 0)
+//     { return  (
+//   <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 rounded-md shadow-md max-w-5xl mx-auto my-8">
+//     <h2 className="text-xl font-semibold mb-1">🚧 No Advertised Properties Available</h2>
+//     <p className="text-sm">
+//       Please check back later — exciting properties might be advertised soon!
+//     </p>
+//   </div>
+// );;} // Don’t render if no data
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-center mb-6 text-primary">
-        🔥 Featured Advertised Properties
-      </h2>
+    <div className="max-w-[1400px] mx-auto px-3 lg:px-0  py-10">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800 text-center">
+    
+        🔥 Featured  Properties
+        </h2>
+    
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {advertised.map((property) => (
@@ -42,22 +44,22 @@ const AdvertisementSection = () => {
             />
             <div className="p-4 space-y-2">
               <h3 className="text-xl font-semibold">{property.title}</h3>
-              <p className="text-gray-600">📍 {property.location}</p>
+              <p className="text-gray-600">Location - {property.location}</p>
               <p className="text-sm">
                 Price: ${property.minPrice} - ${property.maxPrice}
               </p>
-              <div className="flex items-center gap-2 mt-2">
+              {/* <div className="flex items-center gap-2 mt-2">
                 <img
                   src={property.agentImage}
                   alt={property.agentName}
                   className="w-8 h-8 rounded-full border"
                 />
                 <span className="text-sm font-medium">{property.agentName}</span>
-              </div>
+              </div> */}
 
               <Link to={`/property/${property._id}`}>
                 <button className="btn btn-primary btn-sm w-full mt-3">
-                  View Details
+                  View more Details
                 </button>
               </Link>
             </div>
