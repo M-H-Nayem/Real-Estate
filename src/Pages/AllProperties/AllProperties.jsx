@@ -88,15 +88,15 @@ const AllProperties = () => {
                 />
                 <div className="p-4 space-y-2">
                   <h3 className="text-xl font-semibold">{property.title}</h3>
-                  <p className="text-gray-600 text-sm">📍 {property.location}</p>
+                  <p className="text-gray-600 text-sm">Location 📍- {property.location}</p>
 
                   <div className="flex items-center gap-3 mt-2">
-                    <img
+                    {/* <img
                       src={property.agentImage}
                       alt={property.agentName}
                       className="w-8 h-8 rounded-full border"
-                    />
-                    <span className="text-sm font-medium">{property.agentName}</span>
+                    /> */}
+                    {/* <span className="text-sm font-medium">{property.agentName}</span> */}
                   </div>
 
                   <div className="text-sm font-semibold">

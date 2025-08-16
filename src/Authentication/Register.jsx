@@ -194,7 +194,10 @@ const Register = () => {
   
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-md">
+
+   <div className="w-full flex justify-center items-center h-screen p-3 lg:p-0">
+
+    <div className="w-lg mx-auto mt-10 p-6 bg-gray-300 rounded-lg shadow-2xl">
       <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
         Register
       </h2>
@@ -338,6 +341,8 @@ const Register = () => {
       </p>
       <SocialLogin></SocialLogin>
     </div>
+
+   </div>
   );
 };
 

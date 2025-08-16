@@ -182,11 +182,11 @@ const DashBoard = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row pt-[72px] ">
+    <div className="min-h-screen flex flex-col lg:flex-row pt-[64px] sm:pt[72px] ">
       {/* Sidebar */}
       <title>Dashboard</title>
       <aside
-        className={` w-full lg:w-64 p-4 z-50 bg-white fixed overflow-y-auto transition-transform duration-300 ${
+        className={` w-full lg:w-64 p-4 z-50 bg-gray-100 fixed overflow-y-auto transition-transform duration-300 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >

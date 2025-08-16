@@ -27,7 +27,7 @@ const AdvertisementSection = () => {
     <div className="max-w-[1400px] mx-auto px-3 lg:px-0  py-10">
       <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800 text-center">
     
-        🔥 Featured  Properties
+         Featured  Properties 🔥
         </h2>
     
 

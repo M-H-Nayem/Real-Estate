@@ -9,6 +9,7 @@ import FAQSection from '../../Components/FAQ/FAQSection';
 import WhyChooseUs from '../../Components/WhyChoseUs/WhyChooseUs';
 import Banner1 from '../../Components/Banner/Banner1';
 import Feateres from '../../Components/Features/Feateres';
+import Loading from '../../Components/Loading/Loading';
 
 const HomePage = () => {
     return (
@@ -18,6 +19,7 @@ const HomePage = () => {
             <Banner1></Banner1>
             {/* <Slider></Slider> */}
             <AdvertisementSection></AdvertisementSection>
+            {/* <Loading></Loading> */}
             <Feateres></Feateres>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>

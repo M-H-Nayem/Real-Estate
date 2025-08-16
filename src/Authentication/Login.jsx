@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "./SocialLogin";
 
 const Login = () => {
-  let { logIn} = useAuth();
+  let { logIn } = useAuth();
   let navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   let location = useLocation();
@@ -42,75 +42,76 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-gray-200 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
-        Login
-      </h2>
-<title>Login</title>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        {/* Email */}
-        <label className="block mb-2 font-medium" htmlFor="email">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className={`input input-bordered w-full mb-2 ${
-            errors.email ? "input-error" : ""
-          }`}
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: "Enter a valid email address",
-            },
-          })}
-        />
-        {errors.email && (
-          <p className="text-error text-sm mb-2">{errors.email.message}</p>
-        )}
-
-        {/* Password */}
-        <label className="block mb-2 font-medium" htmlFor="password">
-          Password
-        </label>
-        <div className="relative">
+    <div className="w-full flex justify-center items-center h-screen p-3 lg:p-0">
+      <div className="w-lg mt-16 p-6 bg-gray-300 rounded-lg shadow-2xl ">
+        <h2 className="text-2xl font-semibold mb-6 text-center text-primary">
+          Login
+        </h2>
+        <title>Login</title>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          {/* Email */}
+          <label className="block mb-2 font-medium" htmlFor="email">
+            Email
+          </label>
           <input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            className={`input input-bordered w-full pr-10 ${
-              errors.password ? "input-error" : ""
+            id="email"
+            type="email"
+            className={`input input-bordered w-full mb-2 ${
+              errors.email ? "input-error" : ""
             }`}
-            {...register("password", {
-              required: "Password is required",
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                message: "Enter a valid email address",
+              },
             })}
           />
-          <button
-            type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-gray-500"
-            onClick={() => setShowPassword(!showPassword)}
-            tabIndex={-1}
-          >
-            {showPassword ? <FiEyeOff /> : <FiEye />}
+          {errors.email && (
+            <p className="text-error text-sm mb-2">{errors.email.message}</p>
+          )}
+
+          {/* Password */}
+          <label className="block mb-2 font-medium" htmlFor="password">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              className={`input input-bordered w-full pr-10 ${
+                errors.password ? "input-error" : ""
+              }`}
+              {...register("password", {
+                required: "Password is required",
+              })}
+            />
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-lg text-gray-500"
+              onClick={() => setShowPassword(!showPassword)}
+              tabIndex={-1}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
+          </div>
+          {errors.password && (
+            <p className="text-error text-sm mb-2">{errors.password.message}</p>
+          )}
+
+          <button type="submit" className="btn btn-primary w-full mt-4">
+            Login
           </button>
-        </div>
-        {errors.password && (
-          <p className="text-error text-sm mb-2">{errors.password.message}</p>
-        )}
+        </form>
 
-        <button type="submit" className="btn btn-primary w-full mt-4">
-          Login
-        </button>
-      </form>
-
-      <p className="text-center mt-4 text-sm">
-        Don't have an account?{" "}
-        <button className="text-primary font-semibold hover:underline">
-          <Link to={"/register"}>Register here</Link>
-        </button>
-        
-      </p>
-      <SocialLogin></SocialLogin>
+        <p className="text-center mt-4 text-sm">
+          Don't have an account?{" "}
+          <button className="text-primary font-semibold hover:underline">
+            <Link to={"/register"}>Register here</Link>
+          </button>
+        </p>
+        <SocialLogin></SocialLogin>
+      </div>
     </div>
   );
 };
