@@ -9,7 +9,11 @@ const Profile = () => {
 
   if (role==='admin') {
     return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-xl my-[10%]  ">
+
+      <div className="w-full flex justify-center items-center h-screen">
+
+
+    <div className="w-2xl mx-auto p-6 bg-white shadow rounded-xl   ">
       <h2 className="text-2xl font-bold mb-6 text-center text-red-600">
         🛡️ My Profile
       </h2>
@@ -29,11 +33,15 @@ const Profile = () => {
         </div>
       </div>
     </div>
+      </div>
   );
   }
   else if (role==='fraud'|| role==='agent'){
     return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-xl my-[10%]">
+
+      <div className="w-full flex justify-center items-center h-screen">
+
+    <div className="w-2xl mx-auto p-6 bg-white shadow rounded-xl ">
       <h2 className="text-2xl font-bold mb-6 text-center text-green-600">
         🧑‍💼 My Profile
       </h2>
@@ -53,12 +61,15 @@ const Profile = () => {
         </div>
       </div>
     </div>
+
+      </div>
   );
   }
 
   else{
  return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-xl my-[10%] ">
+  <div className="w-full flex justify-center items-center h-screen">
+    <div className="w-2xl mx-auto p-6 bg-white shadow rounded-xl my-[10%] ">
       <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
         👤 My Profile
       </h2>
@@ -79,6 +90,8 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    
+      </div>
   );
   }
 

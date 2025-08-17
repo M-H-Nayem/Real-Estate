@@ -21,8 +21,8 @@ const HomePage = () => {
             <AdvertisementSection></AdvertisementSection>
             {/* <Loading></Loading> */}
             <Feateres></Feateres>
-            <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
+            <WhyChooseUs></WhyChooseUs>
             <TopRatedAgents></TopRatedAgents>
             <LatestUserReviews></LatestUserReviews>
             <FAQSection></FAQSection>

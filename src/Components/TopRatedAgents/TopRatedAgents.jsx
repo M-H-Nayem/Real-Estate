@@ -23,7 +23,7 @@ const TopRatedAgents = () => {
   ];
 
   return (
-    <section className="pb-14 ">
+    <section className="py-10 ">
       <div className="max-w-[1400px] mx-auto px-3 lg:px-0 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800">
           🌟 Top Rated Agents

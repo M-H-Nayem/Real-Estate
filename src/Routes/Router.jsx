@@ -31,6 +31,7 @@ import ManageReviews from "../Components/DashBoardRoutes/Admin/ManageReviews";
 import Payment from "../Components/DashBoardRoutes/User/Payment";
 import Profile from "../Components/DashBoardRoutes/Profile";
 import AdvertiseProperties from "../Components/DashBoardRoutes/Admin/AdvertiseProperties";
+import AboutUs from "../Components/AboutUs/AboutUs";
 
 export let router = createBrowserRouter([
   {
@@ -46,10 +47,22 @@ export let router = createBrowserRouter([
         element: <AllProperties></AllProperties>,
       },
       {
+        path: "aboutus",
+        element: <AboutUs></AboutUs>,
+      },
+      {
         path: "property/:id",
         element: (
           <PrivateRoute>
             <PropertyDetails></PropertyDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+           <Profile></Profile>
           </PrivateRoute>
         ),
       },

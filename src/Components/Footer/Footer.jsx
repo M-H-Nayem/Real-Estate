@@ -11,7 +11,7 @@ import { Link } from "react-router"; // Use react-router-dom for browser-based a
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-gray-300 px-6 py-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-12">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-12">
         {/* Branding & Social Links */}
         <div className="space-y-4 md:col-span-2 lg:col-span-1">
           <h2 className="text-3xl font-bold text-white text-center lg:text-start">

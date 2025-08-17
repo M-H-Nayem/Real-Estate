@@ -20,7 +20,7 @@ import {
 import useAuth from "../../Hooks/useAuth";
 import useUserRole from "../../Hooks/useUserRole";
 
-const DashBoard = () => {
+const DashBoard =  () => {
   let { user } = useAuth();
   let { role } = useUserRole();
 
@@ -29,7 +29,7 @@ const DashBoard = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const getLinkClass = ({ isActive }) =>
     isActive
-      ? "btn btn-ghost w-full justify-start gap-2 bg-blue-600 font-semibold text-white"
+      ? "btn btn-ghost w-full justify-start gap-2 bg-gray-500 font-semibold text-white"
       : "btn btn-ghost w-full justify-start gap-2";
 
   let routes = <></>;
@@ -50,15 +50,7 @@ const DashBoard = () => {
             <FaHeart /> Wishlist
           </NavLink>
         </li>
-        {/* <li
-          onClick={() => {
-            setIsSidebarOpen(false);
-          }}
-        >
-          <NavLink to="/dashboard/be-an-agent" className={getLinkClass}>
-            <FaUserCircle /> Be an Agent
-          </NavLink>
-        </li> */}
+        
         <li
           onClick={() => {
             setIsSidebarOpen(false);
@@ -182,7 +174,7 @@ const DashBoard = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row pt-[64px] sm:pt[72px] ">
+    <div className="min-h-screen flex flex-col lg:flex-row pt-[64px] sm:pt[74px] ">
       {/* Sidebar */}
       <title>Dashboard</title>
       <aside

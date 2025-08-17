@@ -40,10 +40,10 @@ const AllProperties = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen py-25">
       <title>All-Properties</title>
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-6 text-center">All Verified Properties</h2>
+        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800 text-center">All Verified Properties</h2>
 
         {/* 🔍 Search Bar */}
         <form onSubmit={handleSearch} className="mb-6 max-w-md mx-auto flex items-center">
