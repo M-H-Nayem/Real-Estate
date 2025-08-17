@@ -45,8 +45,8 @@ const Navbar = () => {
   let activeEffect = "bg-gray-500 text-gray-100 font-semibold shadow-lg";
 
   return (
-    <div className="fixed top-0 z-100 w-full bg-gray-600 text-gray-200 shadow-md ">
-      <nav className="max-w-[1400px] mx-auto">
+    <div className="fixed top-0 z-150 w-full bg-gray-600 text-gray-200 shadow-md ">
+      <nav className="max-w-7xl mx-auto">
         <div className=" mx-auto flex items-center justify-between px-4 lg:px-0 py-3 md:py-4">
           {/* Logo + Website Name */}
           <NavLink
@@ -73,7 +73,7 @@ const Navbar = () => {
 
           {/* Links */}
           <ul
-            className={`flex-col gap-2 pt-5 lg:pt-0 lg:flex-row lg:flex lg:items-center absolute lg:static bg-gray-600 lg:bg-transparent w-full md:w-auto left-0 lg:left-auto top-16 lg:top-auto transition-all duration-300 ease-in text-center ${
+            className={`flex-col  pt-5 lg:pt-0 lg:flex-row lg:flex lg:items-center absolute lg:static bg-gray-600 lg:bg-transparent w-full md:w-auto left-0 lg:left-auto top-16 lg:top-auto transition-all duration-300 ease-in text-center ${
               navOpen ? "flex" : "hidden"
             }`}
           >
@@ -93,7 +93,7 @@ const Navbar = () => {
               );
             })}
             {user ? (
-              <>
+              <div className="flex flex-col lg:flex-row gap-1">
                 <li className="md:mx-2">
                   <NavLink
                     to={"/dashboard"}
@@ -105,14 +105,14 @@ const Navbar = () => {
                     Dashboard
                   </NavLink>
                 </li>
-                <div className="flex gap-2 flex-col lg:flex-row">
-                  <div className="">
+            
+                  <li className="">
                     <div className=" ">
                       <NavLink
                         to={"/profile"}
                         onClick={() => setNavOpen(false)}
                         className={({ isActive }) =>
-                          `${normalEffect} flex justify-center items-center gap-2 ${
+                          `${normalEffect} flex justify-center gap-1 items-center ${
                             isActive ? `${activeEffect}` : ""
                           }`
                         }
@@ -125,18 +125,18 @@ const Navbar = () => {
                         Profile
                       </NavLink>
                     </div>
-                  </div>
+                  </li>
                   {/* <h1 className="lg:block hidden">{user.displayName}</h1> */}
-                  <div className="">
+                  <li className="">
                     <button
                       onClick={handleLogOut}
-                      className="block px-4 btn w-full text-center  border-none py-2 md:mx-2 rounded-md hover:bg-gray-400 hover:text-white transition-colors bg-gray-500 text-white font-semibold mb-5 lg:mb-0 shadow-none "
+                      className=" px-3 btn w-full text-center  border-none py-2  rounded-md hover:bg-gray-400 hover:text-white transition-colors bg-gray-500 text-white font-semibold mb-5 lg:mb-0 shadow-none "
                     >
                       LogOut
                     </button>
-                  </div>
-                </div>
-              </>
+                  </li>
+             
+              </div>
             ) : (
               <>
                 <li className="md:mx-2">

@@ -30,7 +30,7 @@ const LatestUserReviews = () => {
                 <img
                   src={review.reviewerImage}
                   alt={review.reviewerName}
-                  className="w-12 h-12 rounded-full border"
+                  className="w-12 h-12 rounded-full border-2 border-blue-400"
                 />
                 <div>
                   <h4 className="font-semibold">{review.reviewerName}</h4>

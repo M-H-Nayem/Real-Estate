@@ -105,7 +105,7 @@ const AddProperty = () => {
 
 
     <div className="max-w-3xl mx-auto p-5 bg-white shadow rounded-xl">
-      <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-800 text-center">
         🏡 Add New Property
       </h2>
 <title>Add Property</title>

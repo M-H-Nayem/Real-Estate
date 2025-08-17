@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -14,8 +15,6 @@ const ManageUsers = () => {
     },
   });
 
-  // console.log(users);
-
   const handleMakeRole = async (id, role) => {
     try {
       const res = await axiosSecure.patch(`/users/role/${id}`, { role });
@@ -28,29 +27,28 @@ const ManageUsers = () => {
     }
   };
 
-  
   const handleFraud = async (id) => {
-  const confirm = await Swal.fire({
-    title: "Are you sure?",
-    text: "Mark this agent as fraud? Their properties will be removed.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, mark as fraud!",
-    confirmButtonColor: "#d33",
-  });
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "Mark this agent as fraud? Their properties will be removed.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, mark as fraud!",
+      confirmButtonColor: "#d33",
+    });
 
-  if (confirm.isConfirmed) {
-    try {
-      const res = await axiosSecure.patch(`/users/fraud/${id}`);
-      if (res.data.updateUser.modifiedCount > 0) {
-        Swal.fire("Success", "Agent marked as fraud", "success");
-        refetch(); // Refetch user list
+    if (confirm.isConfirmed) {
+      try {
+        const res = await axiosSecure.patch(`/users/fraud/${id}`);
+        if (res.data.updateUser.modifiedCount > 0) {
+          Swal.fire("Success", "Agent marked as fraud", "success");
+          refetch();
+        }
+      } catch (error) {
+        Swal.fire("Error", "Failed to mark user as fraud", "error");
       }
-    } catch (error) {
-      Swal.fire("Error", "Failed to mark user as fraud", "error");
     }
-  }
-};
+  };
 
   const handleDelete = async (id, email) => {
     const confirm = await Swal.fire({
@@ -74,90 +72,157 @@ const ManageUsers = () => {
     }
   };
 
-  if (isLoading) return <><Loading></Loading></>;
+  if (isLoading) return <Loading />;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
-      <title>Manage User</title>
-      <div className="overflow-x-auto">
-        <table className="table bg-white shadow-md w-full">
-          <thead className="bg-gray-200 text-gray-700">
-            <tr>
-              <th>#</th>
-              <th>User Name</th>
-              <th>Email</th>
-              <th>By</th>
-              <th>Role</th>
-              <th className="">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((u, i) => (
-              <tr key={u._id}>
-                <td>{i + 1}</td>
-                <td>{u.name}</td>
-                <td>{u.email}</td>
-                <td>{u.by}</td>
-                <td className="capitalize">
-                  {u.role}
-                </td>
-                <td className="space-x-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 w-fit">           
-                      {u.role !== "user" && u.role !== "fraud" ?(
-                        <button
-                          className="btn btn-xs btn-success py-4 md:py-2 lg:py-0"
-                          onClick={() => handleMakeRole(u._id, "user")}
-                        >
-                          Make User
-                        </button>
-                      ):""}
-                      {u.role !== "admin" && u.role !== "fraud" ?(
-                        <button
-                          className="btn btn-xs btn-success"
-                          onClick={() => handleMakeRole(u._id, "admin")}
-                        >
-                          Make Admin
-                        </button>
-                      ):""}
-                      {u.role !== "agent" && u.role !== "fraud"  ? (
-                        <button
-                          className="btn btn-xs btn-info"
-                          onClick={() => handleMakeRole(u._id, "agent")}
-                        >
-                          Make Agent
-                        </button>
-                      ):""}
-                  {u.role === "agent"? (
+    <div className="sm:p-6 lg:p-8">
+      <title>Manage Users</title>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+        Manage Users
+      </h2>
+
+      {users.length === 0 ? (
+        <p className="text-center text-gray-500 mt-5">No users found.</p>
+      ) : (
+        <>
+          {/* Card View for Mobile and Tablet (up to lg breakpoint) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:hidden">
+            {users.map((u) => (
+              <div
+                key={u._id}
+                className="bg-white rounded-lg shadow-md p-4 space-y-3 hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800">{u.name}</h3>
+                    <p className="text-sm text-gray-600">
+                      <span className="font-medium">Email:</span> {u.email}
+                    </p>
+                    <p className="text-sm text-gray-600 capitalize">
+                      <span className="font-medium">Role:</span> {u.role}
+                    </p>
+                  </div>
+                 
+                </div>
+
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {u.role !== "user" && u.role !== "fraud" ? (
+                    <button
+                      className="btn btn-xs btn-success"
+                      onClick={() => handleMakeRole(u._id, "user")}
+                    >
+                      Make User
+                    </button>
+                  ) : null}
+                  {u.role !== "admin" && u.role !== "fraud" ? (
+                    <button
+                      className="btn btn-xs btn-success"
+                      onClick={() => handleMakeRole(u._id, "admin")}
+                    >
+                      Make Admin
+                    </button>
+                  ) : null}
+                  {u.role !== "agent" && u.role !== "fraud" ? (
+                    <button
+                      className="btn btn-xs btn-info"
+                      onClick={() => handleMakeRole(u._id, "agent")}
+                    >
+                      Make Agent
+                    </button>
+                  ) : null}
+                  {u.role === "agent" ? (
                     <button
                       className="btn btn-xs btn-warning"
                       onClick={() => handleFraud(u._id, u.email)}
                     >
                       Mark as Fraud
                     </button>
-                  ):""}
-                  {u.role === "fraud" ?<button
-                      className="btn btn-xs btn-error"
-                      // onClick={() => handleFraud(u._id, u.email)}
-                    >
-                     Fraud
-                    </button>:'' }
-                  
-
+                  ) : null}
+                  {u.role === "fraud" ? (
+                    <button className="btn btn-xs btn-error">Fraud</button>
+                  ) : null}
                   <button
                     className="btn btn-xs btn-error"
                     onClick={() => handleDelete(u._id, u.email)}
                   >
                     Delete
                   </button>
-                </td>
-              </tr>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
-        {users.length === 0 && (
-          <p className="text-center mt-4 text-gray-500">No users found.</p>
-        )}
-      </div>
+          </div>
+
+          {/* Table View for Large Devices (lg breakpoint and above) */}
+          <div className="hidden lg:block overflow-x-auto">
+            <table className="table w-full bg-white shadow-md rounded-lg">
+              <thead className="bg-gray-200 text-gray-700">
+                <tr>
+                  <th className="py-3 px-4 text-left">#</th>
+                  <th className="py-3 px-4 text-left">User Name</th>
+                  <th className="py-3 px-4 text-left">Email</th>
+                  <th className="py-3 px-4 text-left">By</th>
+                  <th className="py-3 px-4 text-left">Role</th>
+                  <th className="py-3 px-4 text-left">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((u, i) => (
+                  <tr key={u._id} className="border-b border-gray-200">
+                    <td className="py-2 px-4">{i + 1}</td>
+                    <td className="py-2 px-4">{u.name}</td>
+                    <td className="py-2 px-4">{u.email}</td>
+                    <td className="py-2 px-4">{u.by}</td>
+                    <td className="py-2 px-4 capitalize">{u.role}</td>
+                    <td className="py-2 px-4 space-x-2">
+                      {u.role !== "user" && u.role !== "fraud" ? (
+                        <button
+                          className="btn btn-xs btn-success"
+                          onClick={() => handleMakeRole(u._id, "user")}
+                        >
+                          Make User
+                        </button>
+                      ) : null}
+                      {u.role !== "admin" && u.role !== "fraud" ? (
+                        <button
+                          className="btn btn-xs btn-success"
+                          onClick={() => handleMakeRole(u._id, "admin")}
+                        >
+                          Make Admin
+                        </button>
+                      ) : null}
+                      {u.role !== "agent" && u.role !== "fraud" ? (
+                        <button
+                          className="btn btn-xs btn-info"
+                          onClick={() => handleMakeRole(u._id, "agent")}
+                        >
+                          Make Agent
+                        </button>
+                      ) : null}
+                      {u.role === "agent" ? (
+                        <button
+                          className="btn btn-xs btn-warning"
+                          onClick={() => handleFraud(u._id, u.email)}
+                        >
+                          Mark as Fraud
+                        </button>
+                      ) : null}
+                      {u.role === "fraud" ? (
+                        <button className="btn btn-xs btn-error">Fraud</button>
+                      ) : null}
+                      <button
+                        className="btn btn-xs btn-error"
+                        onClick={() => handleDelete(u._id, u.email)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 };

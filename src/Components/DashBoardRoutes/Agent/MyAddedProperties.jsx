@@ -9,14 +9,12 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyAddedProperties = () => {
   const { user } = useAuth();
-  let useAxios = useAxiosSecure()
+  let useAxios = useAxiosSecure();
 
   const { data: properties = [], refetch } = useQuery({
     queryKey: ["myProperties", user?.email],
     queryFn: async () => {
-      const res = await useAxios.get(
-        `/properties?agentEmail=${user?.email}`
-      );
+      const res = await useAxios.get(`/properties?agentEmail=${user?.email}`);
       return res.data;
     },
   });
@@ -41,19 +39,30 @@ const MyAddedProperties = () => {
   };
 
   return (
-<>
-<title>My Added Properties</title>
-      <h2 className="text-2xl font-bold mb-4">My Added Properties</h2>
-{properties.length === 0 ? (
-        <div className="text-center mt-16 space-y-4" >
-          <h2 className="text-2xl font-semibold text-gray-700">No Properties Added Yet</h2>
-          <p className="text-gray-500 mt-2">Start by adding your first property!</p>
-          <button className="inline-block px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"><Link to={'/dashboard/add-property'}>Add Property</Link></button>
+    <div className="sm:p-6 lg:p-8">
+      <title>My Added Properties</title>
+      <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-800 ">
+        My Added Properties
+      </h2>
+      {properties.length === 0 ? (
+        <div className="text-center mt-16 space-y-4">
+          <h2 className="text-2xl font-semibold text-gray-700">
+            No Properties Added Yet
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Start by adding your first property!
+          </p>
+          <button className="inline-block px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+            <Link to={"/dashboard/add-property"}>Add Property</Link>
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {properties.map((property) => (
-            <div key={property._id} className="bg-white shadow-lg rounded-2xl p-4">
+            <div
+              key={property._id}
+              className="bg-white shadow-lg rounded-2xl p-4"
+            >
               <img
                 src={property.image}
                 alt={property.title}
@@ -72,30 +81,27 @@ const MyAddedProperties = () => {
                   <span className="text-green-600 font-bold flex items-center gap-1">
                     <FaCheckCircle /> Verified
                   </span>
-                ) :
-                 property.verification === "rejected" ? (
+                ) : property.verification === "rejected" ? (
                   <span className="text-red-600 font-bold flex items-center gap-1">
                     <FaTimesCircle /> Rejected
                   </span>
-                ) :
-                 property.verification === "Sold" ? (
-                 <span className="text-gray-700 font-bold flex items-center gap-1">
-    <FaCheckCircle className="text-gray-500" /> Sold
-  </span>
-                ) :
-                
-                (
+                ) : property.verification === "Sold" ? (
+                  <span className="text-gray-700 font-bold flex items-center gap-1">
+                    <FaCheckCircle className="text-gray-500" /> Sold
+                  </span>
+                ) : (
                   <span className="text-yellow-500 font-bold">Pending</span>
                 )}
               </div>
               <div className="flex gap-2 mt-4">
-                {property.verification !== "rejected" && property.verification !== "Sold" && (
-                  <Link to={`/dashboard/update-property/${property._id}`}>
-                    <button  className="btn btn-sm btn-outline text-blue-600">
-                      <FaEdit /> Update
-                    </button>
-                  </Link>
-                )}
+                {property.verification !== "rejected" &&
+                  property.verification !== "Sold" && (
+                    <Link to={`/dashboard/update-property/${property._id}`}>
+                      <button className="btn btn-sm btn-outline text-blue-600">
+                        <FaEdit /> Update
+                      </button>
+                    </Link>
+                  )}
                 <button
                   onClick={() => handleDelete(property._id)}
                   className="btn btn-sm btn-outline text-red-600"
@@ -107,9 +113,7 @@ const MyAddedProperties = () => {
           ))}
         </div>
       )}
-</>
-
-    
+    </div>
   );
 };
 

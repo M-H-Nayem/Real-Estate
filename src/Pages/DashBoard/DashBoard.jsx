@@ -174,46 +174,59 @@ const DashBoard =  () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row pt-[64px] sm:pt[74px] ">
-      {/* Sidebar */}
+    <div className="flex min-h-screen pt-[72px]">
       <title>Dashboard</title>
+      
+      {/* Mobile Sidebar */}
+      <div 
+        className={`fixed inset-0 z-40  bg-opacity-75 transition-opacity duration-300 lg:hidden ${
+          isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={toggleSidebar}
+      ></div>
+
       <aside
-        className={` w-full lg:w-64 p-4 z-50 bg-gray-100 fixed overflow-y-auto transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 w-64 bg-gray-50 p-4 pt-7 transform transition-transform duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0`}
+        } lg:static lg:translate-x-0 lg:z-auto lg:shadow-xl`}
       >
         {/* Close icon for mobile */}
         <div className="flex justify-between items-center lg:hidden mb-4">
           <h2 className="text-xl font-bold">Dashboard</h2>
           <button onClick={toggleSidebar}>
-            <FaTimes className="text-xl" />
+            <FaTimes className="text-xl text-gray-800" />
           </button>
         </div>
 
         {/* Sidebar Links */}
-        <ul className="space-y-3"><li
-          onClick={() => {
-            setIsSidebarOpen(false);
-          }}
-        >
-          <NavLink to="/dashboard/my-profile" className={getLinkClass}>
-            <FaUserCircle /> My Profile
-          </NavLink>
-        </li>{routes}</ul>
+        <ul className="space-y-5 ">
+          <li
+            onClick={() => {
+              setIsSidebarOpen(false);
+            }}
+          >
+            <NavLink to="/dashboard/my-profile" className={getLinkClass}>
+              <FaUserCircle /> My Profile
+            </NavLink>
+          </li>
+          {routes}
+        </ul>
       </aside>
 
-      {/* Content */}
-      <main className="border-l flex-1 ml-0 lg:ml-64 p-4 bg-gray-100 min-h-screen">
-        {/* Mobile Navbar */}
-        <div className="lg:hidden flex justify-between items-center mb-4 ">
-          <h2 className="text-xl font-bold">Dashboard</h2>
+      {/* Main Content */}
+      <main className="flex-1 p-4 bg-gray-100 min-h-screen">
+        {/* Mobile Navbar with toggle button */}
+        <div className="lg:hidden flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
           <button onClick={toggleSidebar}>
-            <FaBars className="text-2xl" />
+            <FaBars className="text-xl text-gray-800" />
           </button>
         </div>
 
-        {/* Outlet  */}
-        <Outlet />
+        {/* Outlet */}
+        <div className="w-full">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ const Loading = () => {
   return (
         <div className="w-11/12 mx-auto  flex justify-center h-screen">
           {/* <span className="loading loading-spinner loading-xl"></span> */}
-             <div className="loader">
+             {/* <div className="loader">
         <div className="loading-text">
           Loading<span className="dot">.</span>
           <span className="dot">.</span>
@@ -27,7 +27,10 @@ const Loading = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <div className="flex justify-center items-center h-full min-h-[300px]">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+  </div>
      </div>
     // <div className="w-11/12 mx-auto flex justify-center items-center h-screen">
     //   <div className="w-15"><svg

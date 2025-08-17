@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loading from "../../Loading/Loading";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,11 +39,11 @@ const ManageReviews = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Reviews</h2>
+    <div className="sm:p-6 lg:p-8">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-800">Manage Reviews</h2>
       <title>Manage Reviews</title>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews.map((review) => (

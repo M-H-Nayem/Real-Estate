@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Loading from "../../Loading/Loading";
 
 const MyReviews = () => {
   const { user } = useAuth();
@@ -39,11 +40,11 @@ const MyReviews = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
-   <div className="p-4">
-      <h2 className="text-2xl font-bold mb-6">My Reviews</h2>
+   <div className="sm:p-6 lg:p-8">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-800">My Reviews</h2>
 <title>My Reviews</title>
       {reviews.length === 0 && (
         <p className="text-center text-gray-500">You haven't added any reviews yet.</p>
